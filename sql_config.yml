@@ -1,0 +1,69 @@
+# main.py
+# typein: 'graph' # input / analysis / graph / deviation
+# number of table: '1' #"How many tables do you want to analyze with? (1 or 2)"
+# kind of graph: 'chart' # "What kind of graph do you want to create? (chart or histogram):"
+# graph number: '2' # How many table do you want to create histogram with? (2 or 3)
+# # deviation: multiplr standards # multiple standards or 1 standard
+
+# Input.py
+file input: '08_11_08_03_results.txt'
+Key ID: '5'
+Client Name: 'Beijing'
+Date: '20211111' #format example:20210101
+Disk Type: 'RAM'
+
+# SQL_select.py
+wanted data: '*'
+table: 'Index_table, Guangzhou_20210924_RAM'
+statement: 'Index_table.Key_ID = Guangzhou_20210924_RAM.Key_ID AND DRBD_Type = "drbd1001" AND Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8" ORDER BY IOPS'
+
+# SQL_select_two_table.py
+wanted data1: '*'
+table1: 'Guangzhou_20210924_RAM'
+statement1: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
+wanted data2: '*'
+table2: 'Taiwan_20210922_SDD'
+statement2: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
+
+# SQL_chart.py
+Select_Data: 'MBPS' # IOPS / MBPS 
+Table_Names: 'Guangzhou_20210924_RAM'
+ReadWrite_Type: '"write"' # read, write, randread, ranwrite
+Number_of_Job: '"8"'
+IOdepth: '"8"'
+
+# SQL_histogram.py
+Select_Data_2hist: 'IOPS' # IOPS / MBPS 
+Table_Name_2hist_1: 'Guangzhou_20210924_RAM'
+Table_Name_2hist_2: 'Taiwan_20210922_SDD'
+Blocksize_2hist: '"1M"' # 4k / 1M
+
+Select_Data_3hist: 'IOPS' # IOPS / MBPS
+Table_Name_3hist_1: 'Guangzhou_20210924_RAM'
+Table_Name_3hist_2: 'Taiwan_20210922_SDD'
+Table_Name_3hist_3: 'Chengdu_20210928_RAM'
+Blocksize_3hist: '"1M"' # 4k / 1M
+
+# SQL_deviation.py
+Standard_Value: IOPS # IOPS / MBPS
+Table_Name_devi_1: 'Guangzhou_20210924_RAM'
+ReadWrite_Type_Stan: '"randwrite"' # # read, write, randread, ranwrite
+DRBD_Type_Stan: '"drbd1001"'
+
+Example_Value: IOPS # IOPS / MBPS
+Table_Name_devi_2: 'Guangzhou_20210924_RAM'
+ReadWrite_Type_Ex: '"write"' # # read, write, randread, ranwrite
+DRBD_Type_Ex: '"drbd1002"'
+
+# SQL_deviation_1standard.py
+Standard_Value_1: IOPS # IOPS / MBPS
+Table_Name_devi_Stan: 'Guangzhou_20210924_RAM'
+ReadWrite_Type_1Stan: '"randwrite"' # # read, write, randread, ranwrite
+DRBD_Type_1Stan: '"drbd1002"'
+Blocksize_Stan: '"4k"'
+
+Example_Value_2: IOPS # IOPS / MBPS
+Table_Name_devi_Ex: 'Guangzhou_20210924_RAM'
+ReadWrite_Type_1Ex: '"read"' # # read, write, randread, ranwrite
+DRBD_Type_1Ex: '"drbd1001"'
+
