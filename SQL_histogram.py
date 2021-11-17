@@ -235,7 +235,8 @@ def SQL_graph_output_3():
     plt.legend()
     plt.grid()
 
-    # plt.savefig(a['Table_Name_3hist_1']-a['Table_Name_3hist_2']-a['Table_Name_3hist_3']-a['Select_Data_2hist'].png)
+    # file_name = a['Table_Name_3hist_1'] + '-' + a['Table_Name_3hist_2'] + '-' + a['Table_Name_3hist_3'] + '-' + a['Select_Data_2hist']
+    # plt.savefig(file_name)
     # plt.savefig(f'{Table_Names_1}-{Table_Names_2}-{Table_Names_3}-{Select_Data}.png', dpi = 00)
     plt.show()
 

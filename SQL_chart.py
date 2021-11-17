@@ -80,9 +80,8 @@ def SQL_graph_output():
     plt.legend()
     plt.grid()
 
-    # file_name = a['Table_Names']-a['ReadWrite_Type']-a['Select_Data']
-    # plt.savefig(f'{file_name}', dpi = 200)
-    # plt.savefig(f'{Table_Names}-{ReadWrite_Type}-{Select_Data}.png', dpi = 200)
+    # file_name = a['Table_Names'] + '-' + a['ReadWrite_Type'] + '-' + a['Select_Data'] + ' ' + 'chart'
+    # plt.savefig(file_name)
     plt.show()
 
     cur.close()

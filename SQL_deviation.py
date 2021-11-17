@@ -146,7 +146,8 @@ def draw():
     plt.title(ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + ayaml['DRBD_Type_Stan']+','+ ayaml['ReadWrite_Type_Stan']+ ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + ayaml['DRBD_Type_Ex']+','+ayaml['ReadWrite_Type_Ex'] + ')')
     plt.grid()
     
-    # plt.savefig(ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + ayaml['DRBD_Type_Stan']+','+ ayaml['ReadWrite_Type_Stan']+ ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + ayaml['DRBD_Type_Ex']+','+ayaml['ReadWrite_Type_Ex'] + ')'.png)
+    # file_name = ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + ayaml['DRBD_Type_Stan']+','+ ayaml['ReadWrite_Type_Stan']+ ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + ayaml['DRBD_Type_Ex']+','+ayaml['ReadWrite_Type_Ex'] + ')'
+    # plt.savefig(file_name)
     plt.show()
 
 if __name__ == '__main__':
