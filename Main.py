@@ -8,6 +8,7 @@ import SQL_histogram as sqlhis
 import SQL_deviation as sqldevi
 import SQL_deviation_1standard as sqldevi1
 import yaml
+import sqlite3
 
 # typein = input("(input/analysis/graph/deviation):")
 
@@ -15,8 +16,11 @@ def main():
     # a_yaml_file = open('sql_config.yml')
     # a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
 
-    index.SQL_printIndex()
-    
+    try:
+        index.SQL_printIndex()
+    except sqlite3.OperationalError:
+        print("Please input FIO result text file name and other information in Yaml configuraion for input.py first AND THEN ENTER input in the next question")
+
     typein = input("What kind of function do you want to use? (input/analysis/graph/deviation):")
     # typein = a['typein']
     if typein == "input":
