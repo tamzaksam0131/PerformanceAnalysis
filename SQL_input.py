@@ -22,15 +22,15 @@ def inputfile():
 
     file = open(file_input,'r')
     results = file.read()
-    re_=r'([a-zA-Z0-9_]+)_([a-zA-Z0-9]+)_([a-zA-Z0-9]+)_(\d+)_(\d+).*\s*.*IOPS=([a-zA-Z0-9.]+).*\s*.*MiB/s\s\((.+/s)\)' # Regular Expression
+    re_=r'([a-zA-Z0-9_]+)_([a-zA-Z0-9]+)_([a-zA-Z0-9]+)_(\d+)_(\d+).*\s*.*IOPS=([a-zA-Z0-9.]+).*\s*.*B/s\s\((.+/s)\)' # Regular Expression
     re_pattern = re.compile(re_)
     re_result = re_pattern.findall(results)
 
     for i in re_result:
         list_data.append(list(i))
-        # for data in list_data:
-        #     print(data)
-
+    # for data in list_data:
+    #     print(data)
+    
     file.close()
 
 def handle_iops():
@@ -55,12 +55,13 @@ def handle_mbps():
         mbps_value = data[6]
         if mbps_value == '':
             data[6]= ''
-        elif mbps_value[3:][-5:] == 'KiB/s': 
-            MBPS_k = float(mbps_value[:-5]) / 1000
+            # print (mbps_value)
+        elif mbps_value[3:][-4:] == 'kB/s': 
+            MBPS_k = float(mbps_value[:-4]) / 1000
             MBPS_k = float("%.2f" % MBPS_k)
             data[6]= MBPS_k
-        elif mbps_value[3:][-5:] == 'GiB/s':
-            MBPS_g = float((mbps_value[:-5]))*1.07
+        elif mbps_value[3:][-4:] == 'GB/s':
+            MBPS_g = float((mbps_value[:-4]))*1.07
             MBPS_g = float("%.1f" % MBPS_g)
             MBPS_g = int(MBPS_g*1000)
             data[6]= MBPS_g
