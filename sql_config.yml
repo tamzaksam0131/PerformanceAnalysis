@@ -6,10 +6,10 @@
 # # deviation: multiplr standards # multiple standards or 1 standard
 
 # Input.py
-file input: '08_11_08_03_results.txt'
-Key ID: '5'
-Client Name: 'Beijing'
-Date: '20211111' #format example:20210101
+file input: '2.log'
+Key ID: '9'
+Client Name: 'abc'
+Date: '20211115' #format example:20210101
 Disk Type: 'RAM'
 
 # SQL_select.py
@@ -27,7 +27,7 @@ statement2: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
 
 # SQL_chart.py
 Select_Data: 'MBPS' # IOPS / MBPS 
-Table_Names: 'Guangzhou_20210924_RAM'
+Table_Names: 'abc_20211115_RAM'
 ReadWrite_Type: '"write"' # read, write, randread, ranwrite
 Number_of_Job: '"8"'
 IOdepth: '"8"'
@@ -67,3 +67,6 @@ Table_Name_devi_Ex: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_1Ex: '"read"' # # read, write, randread, ranwrite
 DRBD_Type_1Ex: '"drbd1001"'
 
+# SQL_view.py
+wanted data view: '*'
+table view: 'Guangzhou_20210924_RAM'
