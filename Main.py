@@ -58,13 +58,15 @@ def main():
     elif typein == "deviation":
         deviation = input("What kind of deviation do you want to create? (multiple standards or 1 standard)")
         if deviation == "multiple standards":
-            sqldevi.SQL_printIndex()
+            sqldevi.SQL_printStandardDRBD()
             sqldevi.SQL_pick_standard_values()
+            sqldevi.SQL_printExampleDRBD()
             sqldevi.SQL_pick_example_values()
             sqldevi.draw()
         if deviation == "1 standard":
-            sqldevi1.SQL_printIndex()
+            sqldevi1.SQL_printStandardDRBD()
             sqldevi1.SQL_pick_standard_values()
+            sqldevi1.SQL_printExampleDRBD()
             sqldevi1.SQL_pick_example_values()
             sqldevi1.draw()
 

@@ -13,25 +13,30 @@ ratio_per = []
 
 # value = ""
 # Standard_table_name = ""
-# Standard_drbd = ""
+Standard_drbd = ""
 # Standard_readwrite_Type = ""
 # Example_table_name = ""
-# Example_drbd = ""
+Example_drbd = ""
 # Example_readwrite_Type = ""
 
-def SQL_printIndex():
+def SQL_printStandardDRBD():
+
+    a_yaml_file = open('sql_config.yml')
+    a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    data = cur.execute('SELECT * From Index_Table')
+    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_1']
+    data = cur.execute(SQL_sentence)
 
-    for column in data.description:
-        print(column[0],end=" ")
+    # for column in data.description:
+    #     print(column[0],end=" ")
     
-    print()
-    for row in data:
-        print (row)
+    # print()
+    for row in set(data):
+        print (row[0])
+        # print (type(row))
 
     cur.close()
     con.commit()
@@ -45,7 +50,9 @@ def SQL_pick_standard_values():
     # value_1 = input('Please Enter the Standard value you want(IOPS / MBPS):')
     # Table_Names_1 = input ('Please Enter the Text Table Name(Standard):')
     # Readwrite_Type_1 = input ('Please Enter the readwrite type(Standard):')
-    # DRBD_Type_1 = input ('Please Enter the drbd type(Standard):')
+    DRBD_Type_1 = input ('Please Enter the drbd type(Standard):')
+    # print (DRBD_Type_1)
+    # print (type(DRBD_Type_1))
 
     # global value
     # value = value_1
@@ -53,17 +60,20 @@ def SQL_pick_standard_values():
     # Standard_table_name = Table_Names_1
     # global Standard_readwrite_Type
     # Standard_readwrite_Type = Readwrite_Type_1
-    # global Standard_drbd
-    # Standard_drbd = DRBD_Type_1
+    global Standard_drbd
+    Standard_drbd = DRBD_Type_1
 
     # sql_result_1 = cur.execute(rf'SELECT {value_1} From {Table_Names_1} WHERE Readwrite_type = "{Readwrite_Type_1}" AND DRBD_Type = "{DRBD_Type_1}"')
     # sql_result_1 = cur.execute('SELECT IOPS From Guangzhou_20210924_RAM WHERE Readwrite_type = "randwrite" AND DRBD_Type = "drbd1001"')
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
+
     SQL_Sentence = 'SELECT' + ' ' + a['Standard_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_1'] \
                 + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_Stan'] \
-                + ' ' + 'AND DRBD_Type = ' + ' ' + a['DRBD_Type_Stan']
+                + ' ' + 'AND DRBD_Type = ' + '"' + DRBD_Type_1 + '"'
+
+    # print (SQL_Sentence)
     
     sql_result_1 = cur.execute(SQL_Sentence)
     
@@ -76,6 +86,28 @@ def SQL_pick_standard_values():
     con.commit()
     con.close()
 
+def SQL_printExampleDRBD():
+
+    a_yaml_file = open('sql_config.yml')
+    a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
+
+    con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
+    cur = con.cursor() # create a cursor for connection object
+
+    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_2']
+    data = cur.execute(SQL_sentence)
+
+    # for column in data.description:
+    #     print(column[0],end=" ")
+    
+    # print()
+    for row in set(data):
+        print (row[0])
+
+    cur.close()
+    con.commit()
+    con.close()
+
 def SQL_pick_example_values():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -83,14 +115,14 @@ def SQL_pick_example_values():
     # value_2 = input('Please Enter the Compared value you want(IOPS / MBPS):')
     # Table_Names_2 = input ('Please Enter the Text Table Name(Compared):')
     # Readwrite_Type_2 = input ('Please Enter the readwrite type(Compared):')
-    # DRBD_Type_2 = input ('Please Enter the drbd type(Compared):')
+    DRBD_Type_2 = input ('Please Enter the drbd type(Compared):')
 
     # global Example_table_name
     # Example_table_name = Table_Names_2
     # global Example_readwrite_Type
     # Example_readwrite_Type = Readwrite_Type_2
-    # global Example_drbd
-    # Example_drbd = DRBD_Type_2
+    global Example_drbd
+    Example_drbd = DRBD_Type_2
 
     # sql_result_2 = cur.execute(rf'SELECT {value_2} From {Table_Names_2} WHERE Readwrite_type = "{Readwrite_Type_2}" AND DRBD_Type = "{DRBD_Type_2}"')
     # sql_result_2 = cur.execute('SELECT IOPS From Guangzhou_20210924_RAM WHERE Readwrite_type = "write" AND DRBD_Type = "drbd1002"')
@@ -99,7 +131,7 @@ def SQL_pick_example_values():
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
     SQL_Sentence = 'SELECT' + ' ' + a['Example_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_2'] \
                 + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_Ex'] \
-                + ' ' + 'AND DRBD_Type = ' + ' ' + a['DRBD_Type_Ex']
+                + ' ' + 'AND DRBD_Type = ' + '"' + DRBD_Type_2 + '"'
     
     sql_result_2 = cur.execute(SQL_Sentence)
     
@@ -143,7 +175,7 @@ def draw():
     for a,b in zip(blocksize_range,ratio_per):
         plt.text(a, b+0.05, '%.2f' % b, ha = 'center', va = 'bottom', fontsize = 11)
     
-    plt.title(ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + ayaml['DRBD_Type_Stan']+','+ ayaml['ReadWrite_Type_Stan']+ ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + ayaml['DRBD_Type_Ex']+','+ayaml['ReadWrite_Type_Ex'] + ')')
+    plt.title(ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + Standard_drbd +','+ ayaml['ReadWrite_Type_Stan']+ ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + Example_drbd +','+ayaml['ReadWrite_Type_Ex'] + ')')
     plt.grid()
     
     # file_name = ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + ayaml['DRBD_Type_Stan']+','+ ayaml['ReadWrite_Type_Stan']+ ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + ayaml['DRBD_Type_Ex']+','+ayaml['ReadWrite_Type_Ex'] + ')'
@@ -151,7 +183,8 @@ def draw():
     plt.show()
 
 if __name__ == '__main__':
-    SQL_printIndex()
+    SQL_printStandardDRBD()
     SQL_pick_standard_values()
+    SQL_printExampleDRBD()
     SQL_pick_example_values()
     draw()

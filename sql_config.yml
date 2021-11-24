@@ -48,24 +48,23 @@ Blocksize_3hist: '"1M"' # 4k / 1M
 Standard_Value: IOPS # IOPS / MBPS
 Table_Name_devi_1: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_Stan: '"randwrite"' # # read, write, randread, ranwrite
-DRBD_Type_Stan: '"drbd1001"'
+
 
 Example_Value: IOPS # IOPS / MBPS
 Table_Name_devi_2: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_Ex: '"write"' # # read, write, randread, ranwrite
-DRBD_Type_Ex: '"drbd1002"'
+
 
 # SQL_deviation_1standard.py
 Standard_Value_1: IOPS # IOPS / MBPS
 Table_Name_devi_Stan: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_1Stan: '"randwrite"' # # read, write, randread, ranwrite
-DRBD_Type_1Stan: '"drbd1002"'
 Blocksize_Stan: '"4k"'
 
 Example_Value_2: IOPS # IOPS / MBPS
 Table_Name_devi_Ex: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_1Ex: '"read"' # # read, write, randread, ranwrite
-DRBD_Type_1Ex: '"drbd1001"'
+
 
 # SQL_view.py
 wanted data view: '*'
