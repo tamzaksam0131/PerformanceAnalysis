@@ -49,7 +49,6 @@ Standard_Value: IOPS # IOPS / MBPS
 Table_Name_devi_1: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_Stan: '"randwrite"' # # read, write, randread, ranwrite
 
-
 Example_Value: IOPS # IOPS / MBPS
 Table_Name_devi_2: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_Ex: '"write"' # # read, write, randread, ranwrite

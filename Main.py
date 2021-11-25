@@ -40,7 +40,7 @@ def main():
             sqlsel.SQL_analysis_output()
         if number_of_table  == "2":
             sqlsel2.SQL_printIndex()
-            sqlsel2.SQL_analysis_output()()
+            sqlsel2.SQL_analysis_output()
     
     elif typein == "graph":
         graph = input("What kind of graph do you want to create? (chart or histogram):")
