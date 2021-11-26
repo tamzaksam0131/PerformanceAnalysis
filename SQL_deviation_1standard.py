@@ -28,7 +28,7 @@ def SQL_printStandardDRBD():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_1']
+    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_Stan']
     data = cur.execute(SQL_sentence)
 
     # for column in data.description:
@@ -92,7 +92,7 @@ def SQL_printExampleDRBD():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_2']
+    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_Ex']
     data = cur.execute(SQL_sentence)
 
     # for column in data.description:

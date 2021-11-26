@@ -62,7 +62,7 @@ Blocksize_Stan: '"4k"'
 
 Example_Value_2: IOPS # IOPS / MBPS
 Table_Name_devi_Ex: 'Guangzhou_20210924_RAM'
-ReadWrite_Type_1Ex: '"read"' # # read, write, randread, ranwrite
+ReadWrite_Type_1Ex: '"randwrite"' # # read, write, randread, ranwrite
 
 
 # SQL_view.py
