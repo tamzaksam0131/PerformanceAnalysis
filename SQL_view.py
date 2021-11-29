@@ -1,7 +1,7 @@
 import sqlite3
 import yaml
 
-def SQL_test():
+def sql_test():
     
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
@@ -9,8 +9,8 @@ def SQL_test():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    SQL_sentence = 'SELECT' + ' ' + a['wanted data view'] + ' ' + 'From' + ' ' + a['table view']
-    data = cur.execute(SQL_sentence)
+    sql_sentence = 'SELECT' + ' ' + a['wanted data view'] + ' ' + 'From' + ' ' + a['table view']
+    data = cur.execute(sql_sentence)
 
     column_list = []
     for column in data.description:
@@ -25,4 +25,4 @@ def SQL_test():
     con.close()
 
 if __name__ == '__main__':
-    SQL_test()
+    sql_test()

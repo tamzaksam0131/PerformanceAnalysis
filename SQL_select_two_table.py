@@ -5,7 +5,7 @@ matplotlib.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
 
-def SQL_printIndex():
+def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -24,7 +24,7 @@ def SQL_printIndex():
     con.commit()
     con.close()
 
-def SQL_analysis_output():
+def sql_analysis_output():
 
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -45,8 +45,8 @@ def SQL_analysis_output():
     
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    SQL_Sentence = 'SELECT'+' '+a['wanted data1']+' '+'FROM'+' '+a['table1'] +' '+'where'+' '+a['statement1'] +' '+ 'UNION ALL' + ' ' + 'SELECT'+' '+a['wanted data2']+' '+'from'+' '+a['table2'] +' '+'where'+' '+a['statement2']
-    sql_result = cur.execute(SQL_Sentence)
+    sql_sentence = 'SELECT'+' '+a['wanted data1']+' '+'FROM'+' '+a['table1'] +' '+'where'+' '+a['statement1'] +' '+ 'UNION ALL' + ' ' + 'SELECT'+' '+a['wanted data2']+' '+'from'+' '+a['table2'] +' '+'where'+' '+a['statement2']
+    sql_result = cur.execute(sql_sentence)
     
     columnlist = []
     for column in sql_result.description:
@@ -56,10 +56,10 @@ def SQL_analysis_output():
     for row in sql_result:
         print (row)
 
-    Excel_filename = input ('Please Enter the name of the Excel file will be created:')
+    excel_filename = input ('Please Enter the name of the Excel file will be created:')
     
-    cur.execute(SQL_Sentence)
-    with open(f"{Excel_filename}.csv","w") as csv_file:
+    cur.execute(sql_sentence)
+    with open(f"{excel_filename}.csv","w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
         csv_writer.writerow([i[0] for i in cur.description])
         csv_writer.writerows(cur)
@@ -70,5 +70,5 @@ def SQL_analysis_output():
 
 
 if __name__ == '__main__':
-    SQL_printIndex()
-    SQL_analysis_output()
+    sql_print_index()
+    sql_analysis_output()

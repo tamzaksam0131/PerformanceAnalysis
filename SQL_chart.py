@@ -5,7 +5,7 @@ matplotlib.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
 
-def SQL_printIndex():
+def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -21,7 +21,7 @@ def SQL_printIndex():
     con.commit()
     con.close()
 
-def SQL_graph_output():
+def sql_graph_output():
 
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -41,8 +41,8 @@ def SQL_graph_output():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    SQL_Sentence = 'SELECT'+ ' ' +'DRBD_Type,'+a['Select_Data']+' '+'FROM'+' '+a['Table_Names'] +' '+'WHERE'+' '+ 'Readwrite_type =' + a['ReadWrite_Type'] + ' ' + 'AND' + ' ' + 'Number_of_Job =' + a['Number_of_Job'] + 'AND' + ' '+ 'IOdepth =' + a['IOdepth']
-    sql_result = cur.execute(SQL_Sentence)
+    sql_sentence = 'SELECT'+ ' ' +'DRBD_Type,'+a['Select_Data']+' '+'FROM'+' '+a['Table_Names'] +' '+'WHERE'+' '+ 'Readwrite_type =' + a['ReadWrite_Type'] + ' ' + 'AND' + ' ' + 'Number_of_Job =' + a['Number_of_Job'] + 'AND' + ' '+ 'IOdepth =' + a['IOdepth']
+    sql_result = cur.execute(sql_sentence)
 
     blocksize_range = ['1k', '2k','4k','8k','16k','32k','64k','128k','256k','512k','1M','2M']
     
@@ -90,5 +90,5 @@ def SQL_graph_output():
 
 
 if __name__ == '__main__':
-    SQL_printIndex()
-    SQL_graph_output()
+    sql_print_index()
+    sql_graph_output()

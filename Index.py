@@ -1,6 +1,6 @@
 import sqlite3
 
-def SQL_printIndex():
+def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -20,4 +20,4 @@ def SQL_printIndex():
     con.close()
 
 if __name__ == '__main__':
-    SQL_printIndex()
+    sql_print_index()

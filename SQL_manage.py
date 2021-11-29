@@ -2,13 +2,13 @@ import sqlite3
 
 from matplotlib.pyplot import table
 
-TableName = ''
+TABLE_NAME = ''
 
 def drop_table():
     drop = input('Please Enter the name of the table you want to delete:')
     
-    global TableName
-    TableName = drop
+    global TABLE_NAME
+    TABLE_NAME = drop
 
     while drop == 'Index_Table':
         print ('Index Table could not be delected')
@@ -31,7 +31,7 @@ def drop_row():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
     
-    sql_sentence_row = f'DELETE FROM Index_Table WHERE Text_Table_Name = "{TableName}"'
+    sql_sentence_row = f'DELETE FROM Index_Table WHERE Text_Table_Name = "{TABLE_NAME}"'
     cur.execute(sql_sentence_row)
     
     data = cur.execute('SELECT * from Index_Table')

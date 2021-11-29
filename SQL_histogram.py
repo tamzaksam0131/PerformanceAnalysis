@@ -5,7 +5,7 @@ mpl.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
 
-def SQL_printIndex():
+def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -27,11 +27,11 @@ def SQL_printIndex():
 def decide_number():
     number = input ("Please Enter the number of Text Table (2 or 3):")
     if number == "2":
-        SQL_graph_output_2()
+        sql_graph_output_2()
     if number == "3":
-        SQL_graph_output_3()
+        sql_graph_output_3()
 
-def SQL_graph_output_2():
+def sql_graph_output_2():
 
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -74,7 +74,7 @@ def SQL_graph_output_2():
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
 
-    SQL_Sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_2hist'] + ' ' + 'FROM Index_table,' +  a['Table_Name_2hist_1'] \
+    sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_2hist'] + ' ' + 'FROM Index_table,' +  a['Table_Name_2hist_1'] \
                 + ' ' + 'WHERE Readwrite_type = "randwrite"'\
                 + ' ' + 'AND Number_of_Job = "8"'\
                 + ' ' + 'AND IOdepth = "8"'\
@@ -88,14 +88,14 @@ def SQL_graph_output_2():
                 + ' ' + 'AND blocksize =' + a['Blocksize_2hist'] \
                 + ' ' + 'AND Index_table.Key_ID =' + a['Table_Name_2hist_2'] + '.Key_ID'
                          
-    sql_result = cur.execute(SQL_Sentence)
+    sql_result = cur.execute(sql_sentence)
     
-    Text_Table = []
+    text_table = []
     drbd = []
     values = []
 
     for row in sql_result:
-        Text_Table.append(row[0])
+        text_table.append(row[0])
         drbd.append(row[1])
         values.append(row[2])
         print(row)
@@ -110,7 +110,7 @@ def SQL_graph_output_2():
     for i in range(len(drbd)):
         x_data = drbd[i]
         y_data = values[i]
-        plt.bar(x_data, y_data, label = Text_Table[i], width = bar_width)
+        plt.bar(x_data, y_data, label = text_table[i], width = bar_width)
     
     plt.xlabel ('DRBD Type')
     plt.ylabel (a['Select_Data_2hist'])
@@ -127,7 +127,7 @@ def SQL_graph_output_2():
     con.commit()
     con.close()
 
-def SQL_graph_output_3():
+def sql_graph_output_3():
 
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -184,7 +184,7 @@ def SQL_graph_output_3():
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
     
-    SQL_Sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_3hist'] + ' ' + 'FROM Index_table,' +  a['Table_Name_3hist_1'] \
+    sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_3hist'] + ' ' + 'FROM Index_table,' +  a['Table_Name_3hist_1'] \
                 + ' ' + 'WHERE Readwrite_type = "randwrite"'\
                 + ' ' + 'AND Number_of_Job = "8"'\
                 + ' ' + 'AND IOdepth = "8"'\
@@ -205,14 +205,14 @@ def SQL_graph_output_3():
                 + ' ' + 'AND blocksize =' + a['Blocksize_3hist'] \
                 + ' ' + 'AND Index_table.Key_ID =' + a['Table_Name_3hist_3'] + '.Key_ID'
     
-    sql_result = cur.execute(SQL_Sentence)
+    sql_result = cur.execute(sql_sentence)
     
-    Text_Table = []
+    text_table = []
     drbd = []
     values = []
     
     for row in sql_result:
-        Text_Table.append(row[0])
+        text_table.append(row[0])
         drbd.append(row[1])
         values.append(row[2])
         print(row)
@@ -226,7 +226,7 @@ def SQL_graph_output_3():
     for i in range(len(drbd)):
         x_data = drbd[i]
         y_data = values[i]
-        plt.bar(x_data, y_data, label = Text_Table[i], width = bar_width)
+        plt.bar(x_data, y_data, label = text_table[i], width = bar_width)
     
     plt.xlabel ('DRBD Type')
     plt.ylabel (a['Select_Data_3hist'])
@@ -245,7 +245,7 @@ def SQL_graph_output_3():
     con.close()
 
 if __name__ == '__main__':
-    SQL_printIndex()
+    sql_print_index()
     decide_number()
-    # SQL_graph_output_2()
-    # SQL_graph_output_3()
+    # sql_graph_output_2()
+    # sql_graph_output_3()

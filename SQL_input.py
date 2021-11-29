@@ -4,9 +4,9 @@ import os.path
 import sqlite3
 import yaml
 
-list_data = []
-table_name = ""
-KeyID = ""
+LIST_DATA = []
+TABLE_NAME = ""
+KEY_ID = ""
 
 def inputfile():
     a_yaml_file = open('sql_config.yml')
@@ -27,14 +27,14 @@ def inputfile():
     re_result = re_pattern.findall(results)
 
     for i in re_result:
-        list_data.append(list(i))
+        LIST_DATA.append(list(i))
     # for data in list_data:
     #     print(data)
     
     file.close()
 
 def handle_iops():
-    for data in list_data:
+    for data in LIST_DATA:
         # print (data)
         iops_value = data[5]
         # print (iops_value)
@@ -51,7 +51,7 @@ def handle_iops():
         # print (type(data[5]))
 
 def handle_mbps():
-    for data in list_data:
+    for data in LIST_DATA:
         mbps_value = data[6]
         if mbps_value == '':
             data[6]= ''
@@ -72,7 +72,7 @@ def handle_mbps():
         # print (data[6])
         # print (type(data[3]))
 
-def SQL_index_input():
+def sql_index_input():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
@@ -98,19 +98,19 @@ def SQL_index_input():
     # Date = input('Please enter the date:(format example:20210101):')
     # Disk_Type = input ('Please enter the Disk Type:')
 
-    Key_ID = a['Key ID']
-    Client_Name = a['Client Name']
-    Date = a['Date']
-    Disk_Type = a['Disk Type']
-    Text_Table_Name = (Client_Name + '_' + Date + '_' + Disk_Type)
+    key_ID = a['Key ID']
+    client_name = a['Client Name']
+    date = a['Date']
+    disk_type = a['Disk Type']
+    text_table_name = (client_name + '_' + date + '_' + disk_type)
     
-    global table_name 
-    table_name = Text_Table_Name
-    global KeyID
-    KeyID = Key_ID
+    global TABLE_NAME 
+    TABLE_NAME = text_table_name
+    global KEY_ID
+    KEY_ID = key_ID
 
-    values = (Key_ID, Client_Name, Date, Disk_Type, Text_Table_Name)
-    
+    values = (key_ID, client_name, date, disk_type, text_table_name)
+
     cur.execute (query,values)
     
     sql_result = cur.execute('SELECT * FROM Index_Table')
@@ -128,12 +128,12 @@ def SQL_index_input():
     con.close()
 
 
-def SQL_text_input():
+def sql_text_input():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
     
     try:
-        cur.execute(f'''CREATE TABLE {table_name}
+        cur.execute(f'''CREATE TABLE {TABLE_NAME}
                         (Key_ID integer,
                         DRBD_type text,
                         Readwrite_type text,
@@ -144,12 +144,12 @@ def SQL_text_input():
                         MBPS real
                         )''')
         
-        print(table_name)
+        print(TABLE_NAME)
     
-        query = f'''INSERT INTO {table_name} (Key_ID, DRBD_type, Readwrite_type, blocksize, Number_of_Job, IOdepth, IOPS, MBPS) values (?,?,?,?,?,?,?,?)'''
+        query = f'''INSERT INTO {TABLE_NAME} (Key_ID, DRBD_type, Readwrite_type, blocksize, Number_of_Job, IOdepth, IOPS, MBPS) values (?,?,?,?,?,?,?,?)'''
 
-        for data in list_data:      
-            Key_ID = KeyID
+        for data in LIST_DATA:      
+            Key_ID = KEY_ID
             DRBD_type = data[0]
             Readwrite_type = data[1]
             blocksize = data[2]
@@ -162,7 +162,7 @@ def SQL_text_input():
 
             cur.execute(query, values)
 
-            sql_result = cur.execute(f'SELECT * FROM {table_name}')
+            sql_result = cur.execute(f'SELECT * FROM {TABLE_NAME}')
             
 
         columnlist = []
@@ -184,5 +184,5 @@ if __name__ == '__main__':
     inputfile()
     handle_iops()
     handle_mbps()
-    SQL_index_input()
-    SQL_text_input()
+    sql_index_input()
+    sql_text_input()

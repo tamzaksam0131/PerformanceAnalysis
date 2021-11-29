@@ -2,7 +2,7 @@ import sqlite3
 import csv
 import yaml
 
-def SQL_printIndex():
+def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -21,7 +21,7 @@ def SQL_printIndex():
     con.commit()
     con.close()
 
-def SQL_analysis_output():
+def sql_analysis_output():
 
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
@@ -59,5 +59,5 @@ def SQL_analysis_output():
     con.close()
 
 if __name__ == '__main__':
-    SQL_printIndex()
-    SQL_analysis_output()
+    sql_print_index()
+    sql_analysis_output()

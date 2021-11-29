@@ -1,7 +1,7 @@
 import sqlite3
 import yaml
 
-def SQL_test():
+def sql_test():
     
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
@@ -27,4 +27,4 @@ def SQL_test():
     con.close()
 
 if __name__ == '__main__':
-    SQL_test()
+    sql_test()
