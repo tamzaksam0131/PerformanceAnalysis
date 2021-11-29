@@ -19,7 +19,7 @@ def main():
     # a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
 
     try:
-        index.sql_printIndex()
+        index.sql_print_index()
     except sqlite3.OperationalError:
         print("Please input FIO result text file name and other information in Yaml configuraion for input.py first AND THEN ENTER input in the next question")
 

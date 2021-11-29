@@ -146,7 +146,7 @@ def draw():
     ayaml = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
 
     LONG_STANDARD_VALUES = STANDARD_VALUES * 12
-    diffence = [EXAMPLE_VALUES - LONG_STANDARD_VALUES for example_values, LONG_STANDARD_VALUES in zip (EXAMPLE_VALUES, LONG_STANDARD_VALUES)]
+    diffence = [EXAMPLE_VALUES - LONG_STANDARD_VALUES for EXAMPLE_VALUES, LONG_STANDARD_VALUES in zip (EXAMPLE_VALUES, LONG_STANDARD_VALUES)]
     print (diffence)
     ratio = [diffence / LONG_STANDARD_VALUES for diffence, LONG_STANDARD_VALUES in zip (diffence, LONG_STANDARD_VALUES)]
 
