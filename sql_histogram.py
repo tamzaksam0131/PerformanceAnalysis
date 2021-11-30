@@ -75,14 +75,14 @@ def sql_graph_output_2():
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
 
     sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_2hist'] + ' ' + 'FROM Index_table,' +  a['Table_Name_2hist_1'] \
-                + ' ' + 'WHERE Readwrite_type = "randwrite"'\
+                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_2hist']\
                 + ' ' + 'AND Number_of_Job = "8"'\
                 + ' ' + 'AND IOdepth = "8"'\
                 + ' ' + 'AND blocksize =' + a['Blocksize_2hist'] \
                 + ' ' + 'AND Index_table.Key_ID =' + a['Table_Name_2hist_1'] + '.Key_ID' \
                 + ' ' + 'UNION ALL' \
                 + ' ' + 'SELECT Text_Table_Name, DRBD_Type,' + a['Select_Data_2hist'] + ' ' + 'FROM Index_table,' + a['Table_Name_2hist_2'] \
-                + ' ' + 'WHERE Readwrite_type = "randwrite"' \
+                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_2hist'] \
                 + ' ' + 'AND Number_of_Job = "8"' \
                 + ' ' + 'AND IOdepth = "8"' \
                 + ' ' + 'AND blocksize =' + a['Blocksize_2hist'] \
@@ -185,21 +185,21 @@ def sql_graph_output_3():
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
     
     sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_3hist'] + ' ' + 'FROM Index_table,' +  a['Table_Name_3hist_1'] \
-                + ' ' + 'WHERE Readwrite_type = "randwrite"'\
+                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_3hist'] \
                 + ' ' + 'AND Number_of_Job = "8"'\
                 + ' ' + 'AND IOdepth = "8"'\
                 + ' ' + 'AND blocksize =' + a['Blocksize_3hist'] \
                 + ' ' + 'AND Index_table.Key_ID =' + a['Table_Name_3hist_1'] + '.Key_ID' \
                 + ' ' + 'UNION ALL' \
                 + ' ' + 'SELECT Text_Table_Name, DRBD_Type,' + a['Select_Data_3hist'] + ' ' + 'FROM Index_table,' + a['Table_Name_3hist_2'] \
-                + ' ' + 'WHERE Readwrite_type = "randwrite"' \
+                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_3hist']  \
                 + ' ' + 'AND Number_of_Job = "8"' \
                 + ' ' + 'AND IOdepth = "8"' \
                 + ' ' + 'AND blocksize =' + a['Blocksize_3hist'] \
                 + ' ' + 'AND Index_table.Key_ID =' + a['Table_Name_3hist_2'] + '.Key_ID' \
                 + ' ' + 'UNION ALL' \
                 + ' ' + 'SELECT Text_Table_Name, DRBD_Type,' + a['Select_Data_3hist'] + ' ' + 'FROM Index_table,' + a['Table_Name_3hist_3'] \
-                + ' ' + 'WHERE Readwrite_type = "randwrite"' \
+                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_3hist'] \
                 + ' ' + 'AND Number_of_Job = "8"' \
                 + ' ' + 'AND IOdepth = "8"' \
                 + ' ' + 'AND blocksize =' + a['Blocksize_3hist'] \

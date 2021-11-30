@@ -36,12 +36,14 @@ IOdepth: '"8"'
 Select_Data_2hist: 'IOPS' # IOPS / MBPS 
 Table_Name_2hist_1: 'Guangzhou_20210924_RAM'
 Table_Name_2hist_2: 'Taiwan_20210922_SDD'
+Readwrite_2hist: '"read"' # read, write, randread, ranwrite
 Blocksize_2hist: '"1M"' # 4k / 1M
 
 Select_Data_3hist: 'IOPS' # IOPS / MBPS
 Table_Name_3hist_1: 'Guangzhou_20210924_RAM'
 Table_Name_3hist_2: 'Taiwan_20210922_SDD'
 Table_Name_3hist_3: 'Chengdu_20210928_RAM'
+Readwrite_3hist: '"read"' # read, write, randread, ranwrite
 Blocksize_3hist: '"1M"' # 4k / 1M
 
 # SQL_deviation.py
