@@ -6,10 +6,10 @@
 # # deviation: multiplr standards # multiple standards or 1 standard
 
 # Input.py
-file input: '2.log'
-Key ID: '9'
+file input: '1.log'
+Key ID: '3'
 Client Name: 'abc'
-Date: '20211115' #format example:20210101
+Date: '20211117' #format example:20210101
 Disk Type: 'RAM'
 
 # SQL_select.py

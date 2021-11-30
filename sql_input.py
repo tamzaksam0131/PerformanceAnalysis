@@ -1,6 +1,7 @@
 import re
 import os
 import os.path
+import sys
 import sqlite3
 import yaml
 
@@ -19,6 +20,9 @@ def inputfile():
     # 08_06_05_23_results.txt
     # 1.log
     # 08_11_08_03_results.txt
+    if not os.path.exists (file_input):
+        print ("The file is not existed. Please Enter the right txt file in yaml configuration.")
+        sys.exit()
 
     file = open(file_input,'r')
     results = file.read()
@@ -97,13 +101,18 @@ def sql_index_input():
     # Client_Name = input ('Please enter the Client Name:')
     # Date = input('Please enter the date:(format example:20210101):')
     # Disk_Type = input ('Please enter the Disk Type:')
-
-    key_ID = a['Key ID']
+    
+    try:
+        key_ID = int(a['Key ID'])
+    except ValueError:
+        print ("Please enter a NUMBER for Key ID")
+        sys.exit()
+    
     client_name = a['Client Name']
     date = a['Date']
     disk_type = a['Disk Type']
     text_table_name = (client_name + '_' + date + '_' + disk_type)
-    
+
     global TABLE_NAME 
     TABLE_NAME = text_table_name
     global KEY_ID
@@ -111,7 +120,11 @@ def sql_index_input():
 
     values = (key_ID, client_name, date, disk_type, text_table_name)
 
-    cur.execute (query,values)
+    try: 
+        cur.execute (query,values)
+    except sqlite3.IntegrityError:
+        print ("The key ID is repeated. Please check the Index Table and re-enter.")
+        sys.exit()
     
     sql_result = cur.execute('SELECT * FROM Index_Table')
 
