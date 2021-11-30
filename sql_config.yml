@@ -27,7 +27,7 @@ statement2: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
 
 # SQL_chart.py
 Select_Data: 'MBPS' # IOPS / MBPS 
-Table_Names: 'abc_20211115_RAM'
+Table_Names: 'Chengdu_20210928_RAM'
 ReadWrite_Type: '"write"' # read, write, randread, ranwrite
 Number_of_Job: '"8"'
 IOdepth: '"8"'
