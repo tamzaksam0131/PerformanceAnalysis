@@ -33,9 +33,11 @@ Number_of_Job: '"8"'
 IOdepth: '"8"'
 
 # SQL_histogram.py
+number: "2" # 2 / 3
+
 Select_Data_2hist: 'IOPS' # IOPS / MBPS 
-Table_Name_2hist_1: 'Guangzhou_20210924_RAM'
-Table_Name_2hist_2: 'Taiwan_20210922_SDD'
+Table_Name_2hist_1: 'abc_20211115_RAM'
+Table_Name_2hist_2: 'abc_20211116_RAM'
 Readwrite_2hist: '"read"' # read, write, randread, ranwrite
 Blocksize_2hist: '"1M"' # 4k / 1M
 
