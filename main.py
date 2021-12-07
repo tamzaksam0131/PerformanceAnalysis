@@ -23,7 +23,7 @@ def main():
     except sqlite3.OperationalError:
         print("Please input FIO result text file name and other information in Yaml configuraion for input.py first AND THEN ENTER input in the next question")
 
-    typein = input("What kind of function do you want to use? (input/analysis/graph/deviation/view/manage):")
+    typein = input("What kind of function do you want to use? (view/input/analysis/graph/deviation/manage):")
     # typein = a['typein']
     if typein == "input":
         sqlin.inputfile()
@@ -71,7 +71,8 @@ def main():
             sqldevi1.draw()
 
     elif typein == "view":
-        sqlview.sql_test()
+        sqlview.sql_print_index()
+        sqlview.num_test()
     
     elif typein == "manage":
         sqlman.drop_table()

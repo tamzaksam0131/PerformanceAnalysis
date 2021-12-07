@@ -1,15 +1,18 @@
-# main.py
-# typein: 'graph' # input / analysis / graph / deviation
-# number of table: '1' #"How many tables do you want to analyze with? (1 or 2)"
-# kind of graph: 'chart' # "What kind of graph do you want to create? (chart or histogram):"
-# graph number: '2' # How many table do you want to create histogram with? (2 or 3)
-# # deviation: multiplr standards # multiple standards or 1 standard
+# SQL_view.py
+number of view: '3' #  1 / 2 / 3  
+
+wanted data view: '*'
+table view: 'Guangzhou_20210924_RAM'
+wanted data view 2: '*'
+table view 2: 'Taiwan_20210925_RAM'
+wanted data view 3: '*'
+table view 3: 'Chengdu_20210926_RAM'
 
 # Input.py
-file input: '2.log'
-Key ID: '9'
-Client Name: 'abc'
-Date: '20211115' #format example:20210101
+file input: '08_06_05_23_results.txt'
+Key ID: '3'
+Client Name: 'Chengdu'
+Date: '20210926' #format example:20210101
 Disk Type: 'RAM'
 
 # SQL_select.py
@@ -27,15 +30,17 @@ statement2: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
 
 # SQL_chart.py
 Select_Data: 'MBPS' # IOPS / MBPS 
-Table_Names: 'abc_20211115_RAM'
+Table_Names: 'Chengdu_20210928_RAM'
 ReadWrite_Type: '"write"' # read, write, randread, ranwrite
 Number_of_Job: '"8"'
 IOdepth: '"8"'
 
 # SQL_histogram.py
+number: "2" # 2 / 3
+
 Select_Data_2hist: 'IOPS' # IOPS / MBPS 
-Table_Name_2hist_1: 'Guangzhou_20210924_RAM'
-Table_Name_2hist_2: 'Taiwan_20210922_SDD'
+Table_Name_2hist_1: 'abc_20211115_RAM'
+Table_Name_2hist_2: 'abc_20211116_RAM'
 Readwrite_2hist: '"read"' # read, write, randread, ranwrite
 Blocksize_2hist: '"1M"' # 4k / 1M
 
@@ -65,8 +70,3 @@ Blocksize_Stan: '"4k"'
 Example_Value_2: IOPS # IOPS / MBPS
 Table_Name_devi_Ex: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_1Ex: '"randwrite"' # # read, write, randread, ranwrite
-
-
-# SQL_view.py
-wanted data view: '*'
-table view: 'Guangzhou_20210924_RAM'

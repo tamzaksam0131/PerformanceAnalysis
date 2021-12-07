@@ -80,8 +80,8 @@ def sql_graph_output():
     plt.legend()
     plt.grid()
 
-    # file_name = a['Table_Names'] + '-' + a['ReadWrite_Type'] + '-' + a['Select_Data'] + ' ' + 'chart'
-    # plt.savefig(file_name)
+    file_name = a['Table_Names'] + '-' + a['ReadWrite_Type'] + '-' + a['Select_Data'] + ' ' + 'chart'
+    plt.savefig(file_name)
     plt.show()
 
     cur.close()

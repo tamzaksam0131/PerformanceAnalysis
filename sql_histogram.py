@@ -25,7 +25,12 @@ def sql_print_index():
     con.close()
 
 def decide_number():
-    number = input ("Please Enter the number of Text Table (2 or 3):")
+    a_yaml_file = open('sql_config.yml')
+    a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
+
+    number = a['number']
+    # number = input ("Please Enter the number of Text Table (2 or 3):")
+    
     if number == "2":
         sql_graph_output_2()
     if number == "3":
