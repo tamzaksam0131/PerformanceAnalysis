@@ -71,7 +71,8 @@ def main():
             sqldevi1.draw()
 
     elif typein == "view":
-        sqlview.sql_test()
+        sqlview.sql_print_index()
+        sqlview.num_test()
     
     elif typein == "manage":
         sqlman.drop_table()
