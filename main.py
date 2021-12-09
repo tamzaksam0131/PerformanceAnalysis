@@ -75,6 +75,7 @@ def main():
         sqlview.num_test()
     
     elif typein == "manage":
+        sqlman.sql_print_index()
         sqlman.drop_table()
         sqlman.drop_row()
     
