@@ -1,18 +1,12 @@
 # SQL_view.py
-number of view: '3' #  1 / 2 / 3  
-
-wanted data view: '*'
-table view: 'Guangzhou_20210924_RAM'
-wanted data view 2: '*'
-table view 2: 'Taiwan_20210925_RAM'
-wanted data view 3: '*'
-table view 3: 'Chengdu_20210926_RAM'
+wanted data view: 'Key_ID, DRBD_Type, IOPS'
+table view: [Guangzhou_20210924_RAM, Taiwan_20210925_RAM, Chengdu_20210926_RAM]
 
 # Input.py
-file input: '08_06_05_23_results.txt'
-Key ID: '3'
-Client Name: 'Chengdu'
-Date: '20210926' #format example:20210101
+file input: '08_11_08_03_results.txt'
+Key ID: '7'
+Client Name: 'hk'
+Date: '202110909' #format example:20210101
 Disk Type: 'RAM'
 
 # SQL_select.py
@@ -36,18 +30,18 @@ Number_of_Job: '"8"'
 IOdepth: '"8"'
 
 # SQL_histogram.py
-number: "2" # 2 / 3
+number: "3" # 2 / 3
 
 Select_Data_2hist: 'IOPS' # IOPS / MBPS 
-Table_Name_2hist_1: 'abc_20211115_RAM'
-Table_Name_2hist_2: 'abc_20211116_RAM'
+Table_Name_2hist_1: 'Guangzhou_20210924_RAM'
+Table_Name_2hist_2: 'Taiwan_20210925_RAM'
 Readwrite_2hist: '"read"' # read, write, randread, ranwrite
 Blocksize_2hist: '"1M"' # 4k / 1M
 
 Select_Data_3hist: 'IOPS' # IOPS / MBPS
 Table_Name_3hist_1: 'Guangzhou_20210924_RAM'
-Table_Name_3hist_2: 'Taiwan_20210922_SDD'
-Table_Name_3hist_3: 'Chengdu_20210928_RAM'
+Table_Name_3hist_2: 'Taiwan_20210925_RAM'
+Table_Name_3hist_3: 'Beijing_20211010_RAM'
 Readwrite_3hist: '"read"' # read, write, randread, ranwrite
 Blocksize_3hist: '"1M"' # 4k / 1M
 

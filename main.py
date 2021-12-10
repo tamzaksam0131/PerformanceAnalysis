@@ -72,7 +72,7 @@ def main():
 
     elif typein == "view":
         sqlview.sql_print_index()
-        sqlview.num_test()
+        sqlview.sql_test()
     
     elif typein == "manage":
         sqlman.sql_print_index()
