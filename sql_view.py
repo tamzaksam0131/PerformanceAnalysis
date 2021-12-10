@@ -1,21 +1,17 @@
 import sqlite3
+from prettytable.prettytable import from_db_cursor
 import yaml
-import prettytable
+from prettytable import PrettyTable
 
 def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_result = cur.execute('SELECT * From Index_Table')
+    cur.execute('SELECT * From Index_Table')
 
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
-    
-    for row in sql_result:
-        print (row)
+    x = from_db_cursor(cur)
+    print (x)
 
     cur.close()
     con.commit()
@@ -35,20 +31,12 @@ def sql_test():
         # print (sql_sentence)
     
         # x = prettytable
-        data = cur.execute(sql_sentence)
+        cur.execute(sql_sentence)
+        
+        x = from_db_cursor(cur)
 
-        column_list = []
-        for column in data.description:
-            column_list.append(column[0])
-        print(column_list)
-        # x.field_names = column_list
-
-        for row in data:
-            print (row)
-            # x.add_rows(row)
-            # x = row
-        # print (x)
-  
+        print (a['table view'][i])
+        print (x)
 
     cur.close()
     con.commit()

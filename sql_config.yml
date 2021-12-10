@@ -1,6 +1,6 @@
 # SQL_view.py
-wanted data view: 'Key_ID, DRBD_Type, IOPS'
-table view: [Guangzhou_20210924_RAM, Taiwan_20210925_RAM, Chengdu_20210926_RAM]
+wanted data view: '*'
+table view: [Guangzhou_20210924_RAM]
 
 # Input.py
 file input: '08_11_08_03_results.txt'
@@ -11,8 +11,8 @@ Disk Type: 'RAM'
 
 # SQL_select.py
 wanted data: '*'
-table: 'Index_table, Guangzhou_20210924_RAM'
-statement: 'Index_table.Key_ID = Guangzhou_20210924_RAM.Key_ID AND DRBD_Type = "drbd1001" AND Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8" ORDER BY IOPS'
+table: 'Guangzhou_20210924_RAM'
+statement: 'DRBD_Type = "drbd1001" AND Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8" ORDER BY IOPS'
 
 # SQL_select_two_table.py
 wanted data1: '*'

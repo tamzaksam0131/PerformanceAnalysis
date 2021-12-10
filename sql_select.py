@@ -1,5 +1,6 @@
 import sqlite3
 import csv
+from prettytable.prettytable import from_db_cursor
 import yaml
 
 def sql_print_index():
@@ -7,15 +8,10 @@ def sql_print_index():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_result = cur.execute('SELECT * From Index_Table')
+    cur.execute('SELECT * From Index_Table')
     
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
-    
-    for row in sql_result:
-        print (row)
+    x = from_db_cursor(cur)
+    print (x)
 
     cur.close()
     con.commit()
@@ -35,20 +31,25 @@ def sql_analysis_output():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    SQL_Sentence = 'select'+' '+a['wanted data']+' '+'from'+' '+a['table'] +' '+'where'+' '+a['statement']
-    sql_result = cur.execute((SQL_Sentence))
-    
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
+    sql_sentence = 'select'+' '+a['wanted data']+' '+'from'+' '+a['table'] +' '+'where'+' '+a['statement']
+    # sql_result = cur.execute((sql_sentence))
 
-    for row in sql_result:
-        print (row)
+    cur.execute((sql_sentence))
+    
+    x = from_db_cursor(cur)
+    print(x)
+
+    # columnlist = []
+    # for column in sql_result.description:
+    #     columnlist.append(column[0])
+    # print (columnlist)
+
+    # for row in sql_result:
+    #     print (row)
 
     Excel_filename = input ('Please Enter the name of the Excel file will be created:')
     
-    cur.execute(SQL_Sentence)
+    cur.execute(sql_sentence)
     with open(f"{Excel_filename}.csv","w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
         csv_writer.writerow([i[0] for i in cur.description])
