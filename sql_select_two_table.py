@@ -1,6 +1,7 @@
 import sqlite3
 import csv
 import matplotlib
+from prettytable.prettytable import from_db_cursor
 matplotlib.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
@@ -10,15 +11,18 @@ def sql_print_index():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_result = cur.execute('SELECT * From Index_Table')
+    cur.execute('SELECT * From Index_Table')
     
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
+    # columnlist = []
+    # for column in sql_result.description:
+    #     columnlist.append(column[0])
+    # print (columnlist)
     
-    for row in sql_result:
-        print (row)
+    # for row in sql_result:
+    #     print (row)
+    
+    x = from_db_cursor(cur)
+    print(x)
 
     cur.close()
     con.commit()
@@ -46,15 +50,19 @@ def sql_analysis_output():
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
     sql_sentence = 'SELECT'+' '+a['wanted data1']+' '+'FROM'+' '+a['table1'] +' '+'where'+' '+a['statement1'] +' '+ 'UNION ALL' + ' ' + 'SELECT'+' '+a['wanted data2']+' '+'from'+' '+a['table2'] +' '+'where'+' '+a['statement2']
-    sql_result = cur.execute(sql_sentence)
+    # sql_result = cur.execute(sql_sentence)
     
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
+    # columnlist = []
+    # for column in sql_result.description:
+    #     columnlist.append(column[0])
+    # print (columnlist)
     
-    for row in sql_result:
-        print (row)
+    # for row in sql_result:
+    #     print (row)
+    cur.execute((sql_sentence))
+    
+    x = from_db_cursor(cur)
+    print(x)
 
     excel_filename = input ('Please Enter the name of the Excel file will be created:')
     

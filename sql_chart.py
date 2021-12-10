@@ -4,6 +4,7 @@ import matplotlib
 matplotlib.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
+from prettytable import from_db_cursor
 
 def sql_print_index():
     
@@ -12,10 +13,13 @@ def sql_print_index():
 
     cur.execute('SELECT * From Index_Table')
 
-    sql_result = cur.fetchall()
+    # sql_result = cur.fetchall()
     
-    for row in sql_result:
-        print (row)
+    # for row in sql_result:
+    #     print (row)
+    
+    x = from_db_cursor(cur)
+    print(x)
 
     cur.close()
     con.commit()

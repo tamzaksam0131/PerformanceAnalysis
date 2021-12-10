@@ -11,7 +11,7 @@ def sql_print_index():
     cur.execute('SELECT * From Index_Table')
 
     x = from_db_cursor(cur)
-    print (x)
+    print(x)
 
     cur.close()
     con.commit()

@@ -1,24 +1,30 @@
 import sqlite3
 import numpy as np
 import matplotlib as mpl
+from prettytable.prettytable import from_db_cursor
 mpl.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
+
 
 def sql_print_index():
     
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_result = cur.execute('SELECT * From Index_Table')
+    cur.execute('SELECT * From Index_Table')
 
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
+    # columnlist = []
+    # for column in sql_result.description:
+    #     columnlist.append(column[0])
+    # print (columnlist)
     
-    for row in sql_result:
-        print (row)
+    # for row in sql_result:
+    #     print (row)
+    
+    x = from_db_cursor(cur)
+    print(x)
+
 
     cur.close()
     con.commit()

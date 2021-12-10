@@ -31,13 +31,19 @@ def sql_analysis_output():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    sql_sentence = 'select'+' '+a['wanted data']+' '+'from'+' '+a['table'] +' '+'where'+' '+a['statement']
-    # sql_result = cur.execute((sql_sentence))
 
-    cur.execute((sql_sentence))
+    for i in range(len(a['table'])):
+
+        sql_sentence = 'SELECT' + ' ' +  a['wanted data'] + ' ' + 'From' + ' ' + a['table'][i]+' '+'where'+' '+a['statement']
+        # print (sql_sentence)
     
-    x = from_db_cursor(cur)
-    print(x)
+        cur.execute(sql_sentence)
+        
+        x = from_db_cursor(cur)
+
+        print (a['table'][i])
+        print (x)
+    
 
     # columnlist = []
     # for column in sql_result.description:
@@ -49,6 +55,7 @@ def sql_analysis_output():
 
     Excel_filename = input ('Please Enter the name of the Excel file will be created:')
     
+    # bug here: only show the latest table
     cur.execute(sql_sentence)
     with open(f"{Excel_filename}.csv","w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
