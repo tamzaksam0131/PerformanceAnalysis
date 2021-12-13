@@ -80,7 +80,6 @@ def sql_pick_standard_values():
     for row in sql_result_1:
         # print (row)
         STANDARD_VAULES.append(row[0])
-    print (STANDARD_VAULES)
 
     cur.close()
     con.commit()

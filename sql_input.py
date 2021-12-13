@@ -3,7 +3,9 @@ import os
 import os.path
 import sys
 import sqlite3
+from prettytable.prettytable import from_db_cursor
 import yaml
+
 
 LIST_DATA = []
 TABLE_NAME = ""
@@ -93,7 +95,7 @@ def sql_index_input():
                         Text_Table_Name text
                         )''')
     except:
-        print('Table already exist！')
+        print('Table already exist!')
 
     query = '''INSERT INTO Index_Table (Key_ID, Client_Name, Date, Disk_Type, Text_Table_Name) values (?, ?, ?, ?, ?)'''
 
@@ -126,15 +128,19 @@ def sql_index_input():
         print ("The key ID is repeated. Please check the Index Table and re-enter.")
         sys.exit()
     
-    sql_result = cur.execute('SELECT * FROM Index_Table')
+    # sql_result = cur.execute('SELECT * FROM Index_Table')
 
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
-    
-    for row in sql_result:
-        print (row)
+    # columnlist = []
+    # for column in sql_result.description:
+    #     columnlist.append(column[0])
+    # print (columnlist)
+  
+    sql_sentence = 'SELECT * FROM Index_Table'
+    cur.execute(sql_sentence)
+        
+    x = from_db_cursor(cur)
+
+    print (x)
 
     cur.close()
     con.commit()
@@ -175,23 +181,29 @@ def sql_text_input():
 
             cur.execute(query, values)
 
-            sql_result = cur.execute(f'SELECT * FROM {TABLE_NAME}')
+            sql_result = f'SELECT * FROM {TABLE_NAME}'
             
 
-        columnlist = []
-        for column in sql_result.description:
-            columnlist.append(column[0])
-        print (columnlist)
+        # columnlist = []
+        # for column in sql_result.description:
+        #     columnlist.append(column[0])
+        # print (columnlist)
 
-        for row in sql_result:
-            print (row)
+        # for row in sql_result:
+        #     print (row)
+
+        cur.execute(sql_result)
+        
+        x = from_db_cursor(cur)
+
+        print (x)
 
         cur.close()
         con.commit()
         con.close()
 
     except:
-        print('Table already exist！')
+        print('Table already exist!')
 
 if __name__ == '__main__':
     inputfile()

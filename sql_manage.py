@@ -1,5 +1,5 @@
 import sqlite3
-
+from prettytable.prettytable import from_db_cursor
 from matplotlib.pyplot import table
 
 TABLE_NAME = ''
@@ -9,15 +9,17 @@ def sql_print_index():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_result = cur.execute('SELECT * From Index_Table')
+    cur.execute('SELECT * From Index_Table')
 
-    columnlist = []
-    for column in sql_result.description:
-        columnlist.append(column[0])
-    print (columnlist)
+    # columnlist = []
+    # for column in sql_result.description:
+    #     columnlist.append(column[0])
+    # print (columnlist)
     
-    for row in sql_result:
-        print (row)
+    # for row in sql_result:
+    #     print (row)
+    x = from_db_cursor(cur)
+    print(x)
 
     cur.close()
     con.commit()
@@ -54,13 +56,15 @@ def drop_row():
     cur.execute(sql_sentence_row)
     
     data = cur.execute('SELECT * from Index_Table')
-    column_list = []
-    for column in data.description:
-        column_list.append(column[0])
-    print(column_list)
+    # column_list = []
+    # for column in data.description:
+    #     column_list.append(column[0])
+    # print(column_list)
     
-    for row in data:
-        print (row)
+    # for row in data:
+    #     print (row)
+    x = from_db_cursor(cur)
+    print (x)
 
     cur.close()
     con.commit()
