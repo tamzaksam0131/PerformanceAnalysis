@@ -256,7 +256,7 @@ def sql_graph_output_3():
     con.close()
 
 if __name__ == '__main__':
-    sql_print_index()
+    # sql_print_index()
     decide_number()
     # sql_graph_output_2()
     # sql_graph_output_3()

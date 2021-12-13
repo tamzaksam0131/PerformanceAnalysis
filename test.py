@@ -13,24 +13,28 @@ def sql_test():
     # print (a['table view'])
     # print (a['wanted data view'])
 
-    for i in range(len(a['table view'])):
+    # for i in range(len(a['table view'])):
         # print (i)
         # print (a['table view'][i])
-        sql_sentence = 'SELECT' + ' ' +  a['wanted data view'] + ' ' + 'From' + ' ' + a['table view'][i]
-        # print (sql_sentence)
+    sql_sentence = 'SELECT' + ' ' + 'blocksize' + ' ' + 'From' + ' ' + a['table view'][0]
+    print (sql_sentence)
 
-        cur.execute(sql_sentence)
-        # print (data)
+    data = cur.execute(sql_sentence)
+    # print (data)
 
-        # column_list = []
-        # for column in data.description:
-        #     column_list.append(column[0])
-        # print(column_list)
+    #     # column_list = []
+    #     # for column in data.description:
+    #     #     column_list.append(column[0])
+    #     # print(column_list)
+    listdata = []
+    for row in data:
+        listdata.append(row[0])
+    a = list(set(listdata))
 
-        # for row in data:
-            # print (row)
-        x = from_db_cursor(cur)
-        print (x)
+    print (a)
+    
+    # x = from_db_cursor(cur)
+    # print (x)
 
     cur.close()
     con.commit()

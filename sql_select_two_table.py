@@ -78,5 +78,5 @@ def sql_analysis_output():
 
 
 if __name__ == '__main__':
-    sql_print_index()
+    # sql_print_index()
     sql_analysis_output()

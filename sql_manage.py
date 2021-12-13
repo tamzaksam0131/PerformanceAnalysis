@@ -71,6 +71,6 @@ def drop_row():
     con.close()
 
 if __name__ == '__main__':
-    sql_print_index()
+    # sql_print_index()
     drop_table()
     drop_row()

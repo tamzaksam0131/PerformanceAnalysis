@@ -1,6 +1,6 @@
 # SQL_view.py
 wanted data view: '*'
-table view: [Guangzhou_20210924_RAM, Taiwan_20210925_RAM]
+table view: [Guangzhou_20210924_RAM]
 
 # Input.py
 file input: '08_11_08_03_results.txt'
