@@ -3,20 +3,6 @@ from prettytable.prettytable import from_db_cursor
 import yaml
 from prettytable import PrettyTable
 
-def sql_print_index():
-    
-    con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
-    cur = con.cursor() # create a cursor for connection object
-
-    cur.execute('SELECT * From Index_Table')
-
-    x = from_db_cursor(cur)
-    print(x)
-
-    cur.close()
-    con.commit()
-    con.close()
-
 def sql_test():
     
     a_yaml_file = open('sql_config.yml')
@@ -44,5 +30,4 @@ def sql_test():
 
 
 if __name__ == '__main__':
-    # sql_print_index()
     sql_test()

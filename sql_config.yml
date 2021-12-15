@@ -1,6 +1,6 @@
 # SQL_view.py
 wanted data view: '*'
-table view: [Guangzhou_20210924_RAM]
+table view: [Beijing_20211010_RAM, Taiwan_20210925_RAM]
 
 # Input.py
 file input: '08_11_08_03_results.txt'
@@ -30,20 +30,10 @@ Number_of_Job: '"8"'
 IOdepth: '"8"'
 
 # SQL_histogram.py
-number: "3" # 2 / 3
-
 Select_Data_2hist: 'IOPS' # IOPS / MBPS 
-Table_Name_2hist_1: 'Guangzhou_20210924_RAM'
-Table_Name_2hist_2: 'Taiwan_20210925_RAM'
+Table_hist: [Taiwan_20210925_RAM]
 Readwrite_2hist: '"read"' # read, write, randread, ranwrite
 Blocksize_2hist: '"1M"' # 4k / 1M
-
-Select_Data_3hist: 'IOPS' # IOPS / MBPS
-Table_Name_3hist_1: 'Guangzhou_20210924_RAM'
-Table_Name_3hist_2: 'Taiwan_20210925_RAM'
-Table_Name_3hist_3: 'Beijing_20211010_RAM'
-Readwrite_3hist: '"read"' # read, write, randread, ranwrite
-Blocksize_3hist: '"1M"' # 4k / 1M
 
 # SQL_deviation.py
 Standard_Value: IOPS # IOPS / MBPS
@@ -53,7 +43,6 @@ ReadWrite_Type_Stan: '"randwrite"' # # read, write, randread, ranwrite
 Example_Value: IOPS # IOPS / MBPS
 Table_Name_devi_2: 'Guangzhou_20210924_RAM'
 ReadWrite_Type_Ex: '"write"' # # read, write, randread, ranwrite
-
 
 # SQL_deviation_1standard.py
 Standard_Value_1: IOPS # IOPS / MBPS

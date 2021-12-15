@@ -7,14 +7,6 @@ def sql_print_index():
     cur = con.cursor() # create a cursor for connection object
 
     cur.execute('SELECT * From Index_Table')
-
-    # column_list = []
-    # for column in data.description:
-    #     column_list.append(column[0])
-    # print(column_list)
-    
-    # for row in data:
-    #     print (row)
         
     x = from_db_cursor(cur)
     print (x)

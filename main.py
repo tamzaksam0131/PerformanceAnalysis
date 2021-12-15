@@ -33,29 +33,25 @@ def main():
         sqlin.sql_text_input()
     
     elif typein == "analysis":
+        index.sql_print_index()
         number_of_table = input("How many tables do you want to analyze with? (1 or 2):")
         # number_of_table = a['number of table']
         if number_of_table  == "1":
-            sqlsel.sql_print_index()
             sqlsel.sql_analysis_output()
         if number_of_table  == "2":
-            sqlsel2.sql_print_index()
             sqlsel2.sql_analysis_output()
     
     elif typein == "graph":
+        index.sql_print_index()
         graph = input("What kind of graph do you want to create? (chart or histogram):")
         if graph == "chart":
-            sqlchart.sql_print_index()
             sqlchart.sql_graph_output()
         if graph == "histogram":
-            sqlhis.sql_print_index()
-            graph_number = input ("How many table do you want to create histogram with? (2 or 3):")
-            if graph_number == "2":
-                sqlhis.sql_graph_output_2()
-            if graph_number == "3":
-                sqlhis.sql_graph_output_3()
+            sqlhis.sql_graph_output()
+
     
     elif typein == "deviation":
+        index.sql_print_index()
         deviation = input("What kind of deviation do you want to create? (multiple standards or 1 standard)")
         if deviation == "multiple standards":
             sqldevi.sql_print_standard_drbd()
@@ -71,11 +67,11 @@ def main():
             sqldevi1.draw()
 
     elif typein == "view":
-        sqlview.sql_print_index()
+        index.sql_print_index()
         sqlview.sql_test()
     
     elif typein == "manage":
-        sqlman.sql_print_index()
+        index.sql_print_index()
         sqlman.drop_table()
         sqlman.drop_row()
     
