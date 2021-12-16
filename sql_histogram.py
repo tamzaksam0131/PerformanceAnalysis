@@ -50,9 +50,9 @@ def sql_graph_output():
             values.append(row[2])
             # print(row)
 
-    print (text_table)    
-    print (values)
-    print (drbd)
+    # print (text_table)    
+    # print (values)
+    # print (drbd)
 
     
     plt.figure(figsize=(20,20), dpi = 100)
@@ -60,15 +60,15 @@ def sql_graph_output():
 
     for i in range(len(drbd)):
         x_data = drbd[i]
-        print (x_data)
+        # print (x_data)
         y_data = values[i]
-        print (y_data)
+        # print (y_data)
         plt.bar(x_data, y_data, label = text_table[i], width = bar_width)
         
     plt.xlabel ('DRBD Type')
-    plt.ylabel (a['Select_Data_2hist'])
+    plt.ylabel (a['Select_Data_hist'])
     plt.xticks (rotation = 30)
-    plt.title(a['Select_Data_2hist'] + ' ' + 'under Different DRBD Type (Blockszie =' + a['Blocksize_2hist'] + ')')
+    plt.title(a['Select_Data_hist'] + ' ' + 'under Different DRBD Type (Blockszie =' + a['Blocksize_hist'] + ')')
     plt.legend()
     plt.grid()
         

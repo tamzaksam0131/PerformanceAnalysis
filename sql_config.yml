@@ -31,7 +31,7 @@ IOdepth: '"8"'
 
 # SQL_histogram.py
 Select_Data_hist: 'IOPS' # IOPS / MBPS 
-Table_hist: [Taiwan_20210925_RAM]
+Table_hist: [Guangzhou_20210924_RAM,Taiwan_20210925_RAM]
 Readwrite_hist: '"read"' # read, write, randread, ranwrite
 Blocksize_hist: '"1M"' # 4k / 1M
 
