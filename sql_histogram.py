@@ -19,11 +19,11 @@ def sql_graph_output():
     values = []
 
     for i in range(len(a['Table_hist'])):
-        sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_2hist'] + ' ' + 'FROM Index_table,' +  a['Table_hist'][i] \
-                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_2hist']\
+        sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_hist'] + ' ' + 'FROM Index_table,' +  a['Table_hist'][i] \
+                + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_hist']\
                 + ' ' + 'AND Number_of_Job = "8"'\
                 + ' ' + 'AND IOdepth = "8"'\
-                + ' ' + 'AND blocksize =' + a['Blocksize_2hist'] \
+                + ' ' + 'AND blocksize =' + a['Blocksize_hist'] \
                 + ' ' + 'AND Index_table.Key_ID =' + ' ' + a['Table_hist'][i] + '.Key_ID' \
                     
         # print (sql_sentence)
@@ -73,7 +73,6 @@ def sql_graph_output():
     plt.grid()
         
     # plt.savefig(a['Table_Name_2hist_1']-a['Table_Name_2hist_1']-a['Select_Data_2hist'].png)
-    # plt.savefig('{Table_Names_1}-{Table_Names_2}-{Select_Data}.png', dpi = 200)
     plt.show()
 
     cur.close()

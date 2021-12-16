@@ -30,10 +30,10 @@ Number_of_Job: '"8"'
 IOdepth: '"8"'
 
 # SQL_histogram.py
-Select_Data_2hist: 'IOPS' # IOPS / MBPS 
+Select_Data_hist: 'IOPS' # IOPS / MBPS 
 Table_hist: [Taiwan_20210925_RAM]
-Readwrite_2hist: '"read"' # read, write, randread, ranwrite
-Blocksize_2hist: '"1M"' # 4k / 1M
+Readwrite_hist: '"read"' # read, write, randread, ranwrite
+Blocksize_hist: '"1M"' # 4k / 1M
 
 # SQL_deviation.py
 Standard_Value: IOPS # IOPS / MBPS

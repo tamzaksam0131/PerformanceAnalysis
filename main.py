@@ -34,9 +34,9 @@ def main():
     
     elif typein == "analysis":
         index.sql_print_index()
-        number_of_table = input("How many tables do you want to analyze with? (1 or 2):")
+        number_of_table = input("How many tables do you want to analyze with? (many or 2):")
         # number_of_table = a['number of table']
-        if number_of_table  == "1":
+        if number_of_table  == "many":
             sqlsel.sql_analysis_output()
         if number_of_table  == "2":
             sqlsel2.sql_analysis_output()
