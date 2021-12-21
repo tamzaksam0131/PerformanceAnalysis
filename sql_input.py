@@ -157,27 +157,27 @@ def sql_text_input():
                         DRBD_type text,
                         Readwrite_type text,
                         blocksize text,
-                        Number_of_Job text,
                         IOdepth text,
+                        Number_of_Job text,
                         IOPS real,
                         MBPS real
                         )''')
         
         print(TABLE_NAME)
     
-        query = f'''INSERT INTO {TABLE_NAME} (Key_ID, DRBD_type, Readwrite_type, blocksize, Number_of_Job, IOdepth, IOPS, MBPS) values (?,?,?,?,?,?,?,?)'''
+        query = f'''INSERT INTO {TABLE_NAME} (Key_ID, DRBD_type, Readwrite_type, blocksize, IOdepth, Number_of_Job, IOPS, MBPS) values (?,?,?,?,?,?,?,?)'''
 
         for data in LIST_DATA:      
             Key_ID = KEY_ID
             DRBD_type = data[0]
             Readwrite_type = data[1]
             blocksize = data[2]
-            Number_of_Job = data[3]
-            IOdepth = data[4]
+            IOdepth = data[3]
+            Number_of_Job = data[4]
             IOPS = data[5]
             MBPS = data[6]
 
-            values = (Key_ID, DRBD_type, Readwrite_type, blocksize, Number_of_Job, IOdepth, IOPS, MBPS)
+            values = (Key_ID, DRBD_type, Readwrite_type, blocksize, IOdepth, Number_of_Job, IOPS, MBPS)
 
             cur.execute(query, values)
 
