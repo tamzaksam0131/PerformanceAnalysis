@@ -21,9 +21,9 @@ def sql_graph_output():
     for i in range(len(a['Table_hist'])):
         sql_sentence = 'SELECT Text_Table_Name, DRBD_Type,' + ' ' + a['Select_Data_hist'] + ' ' + 'FROM Index_table,' +  a['Table_hist'][i] \
                 + ' ' + 'WHERE Readwrite_type = ' + a['Readwrite_hist']\
-                + ' ' + 'AND Number_of_Job = "8"'\
-                + ' ' + 'AND IOdepth = "8"'\
-                + ' ' + 'AND blocksize =' + a['Blocksize_hist'] \
+                + ' ' + 'AND Number_of_Job = ' + a['Number_of_Job_hist']\
+                + ' ' + 'AND IOdepth = ' + a['IOdepth_hist']\
+                + ' ' + 'AND blocksize = ' + a['Blocksize_hist']\
                 + ' ' + 'AND Index_table.Key_ID =' + ' ' + a['Table_hist'][i] + '.Key_ID' \
                     
         # print (sql_sentence)
@@ -43,12 +43,12 @@ def sql_graph_output():
     #             + ' ' + 'AND Index_table.Key_ID =' + a['Table_Name_2hist_2'] + '.Key_ID'
                          
         sql_result = cur.execute(sql_sentence)
-
+    
         for row in sql_result:
             text_table.append(row[0])
             drbd.append(row[1])
             values.append(row[2])
-            # print(row)
+            print(row)
 
     # print (text_table)    
     # print (values)

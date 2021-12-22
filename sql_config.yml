@@ -1,18 +1,18 @@
 # SQL_view.py
 wanted data view: '*'
-table view: [Beijing_20211010_RAM, Taiwan_20210925_RAM]
+table view: [VersaPLX2000_20211220_sdb_sdc]
 
 # Input.py
-file input: '08_11_08_03_results.txt'
-Key ID: '5'
-Client Name: 'London'
-Date: '20211101' #format example:20210101
-Disk Type: 'RAM'
+file input: 'sdc_sdb.txt'
+Key ID: '3'
+Client Name: 'VersaPLX2000'
+Date: '20211220' #format example:20210101
+Disk Type: 'sdb_sdc'
 
 # SQL_select.py
 wanted data: '*'
-table: [Guangzhou_20210924_RAM, Taiwan_20210925_RAM,Chengdu_20210926_RAM]
-statement: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8" ORDER BY IOPS'
+table: [Guangzhou_20211221_RAM,Taiwan_20211225_RAM,Chengdu_20211225_RAM]
+statement: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
 
 # SQL_select_two_table.py
 wanted data1: '*'
@@ -24,32 +24,34 @@ statement2: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
 
 # SQL_chart.py
 Select_Data: 'MBPS' # IOPS / MBPS 
-Table_Names: 'Chengdu_20210926_RAM'
-ReadWrite_Type: '"write"' # read, write, randread, ranwrite
-Number_of_Job: '"8"'
-IOdepth: '"8"'
+Table_Names: 'VersaPLX2000_20211220_sdb_sdc'
+ReadWrite_Type: '"randwrite"' # read, write, randread, randwrite
+Number_of_Job: '"64"'
+IOdepth: '"256"'
 
 # SQL_histogram.py
 Select_Data_hist: 'IOPS' # IOPS / MBPS 
-Table_hist: [Guangzhou_20210924_RAM,Taiwan_20210925_RAM]
-Readwrite_hist: '"read"' # read, write, randread, ranwrite
-Blocksize_hist: '"1M"' # 4k / 1M
+Table_hist: [VersaPLX2000_20211220_RAM_sdb_sdc]
+Readwrite_hist: '"write"' # read, write, randread, ranwrite
+Number_of_Job_hist: '"64"' 
+IOdepth_hist: '"256"'
+Blocksize_hist: '"4k"' # 4k / 1M
 
 # SQL_deviation.py
 Standard_Value: IOPS # IOPS / MBPS
-Table_Name_devi_1: 'Guangzhou_20210924_RAM'
+Table_Name_devi_1: 'VersaPLX2000_20211220_RAM_sdb_sdc'
 ReadWrite_Type_Stan: '"randwrite"' # # read, write, randread, ranwrite
 
 Example_Value: IOPS # IOPS / MBPS
-Table_Name_devi_2: 'Guangzhou_20210924_RAM'
-ReadWrite_Type_Ex: '"write"' # # read, write, randread, ranwrite
+Table_Name_devi_2: 'VersaPLX2000_20211220_sdb_sdc'
+ReadWrite_Type_Ex: '"randwrite"' # # read, write, randread, ranwrite
 
 # SQL_deviation_1standard.py
 Standard_Value_1: IOPS # IOPS / MBPS
-Table_Name_devi_Stan: 'Guangzhou_20210924_RAM'
+Table_Name_devi_Stan: 'VersaPLX2000_20211220_RAM_sdb_sdc'
 ReadWrite_Type_1Stan: '"randwrite"' # # read, write, randread, ranwrite
 Blocksize_Stan: '"4k"'
 
 Example_Value_2: IOPS # IOPS / MBPS
-Table_Name_devi_Ex: 'Guangzhou_20210924_RAM'
+Table_Name_devi_Ex: 'VersaPLX2000_20211220_RAM_sdb_sdc'
 ReadWrite_Type_1Ex: '"randwrite"' # # read, write, randread, ranwrite
