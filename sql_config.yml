@@ -1,18 +1,18 @@
 # SQL_view.py
 wanted data view: '*'
-table view: [VersaPLX2000_20211220_sdb_sdc]
+table view: [hp_20211224_RAM]
 
 # Input.py
-file input: 'sdc_sdb.txt'
+file input: '12_23_17_33_results.txt'
 Key ID: '3'
-Client Name: 'VersaPLX2000'
-Date: '20211220' #format example:20210101
-Disk Type: 'sdb_sdc'
+Client Name: 'hp'
+Date: '20211224' #format example:20210101
+Disk Type: 'RAM'
 
 # SQL_select.py
 wanted data: '*'
-table: [Guangzhou_20211221_RAM,Taiwan_20211225_RAM,Chengdu_20211225_RAM]
-statement: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
+table: [hp_20211224_RAM]
+statement: 'Number_of_Job = "64" AND IOdepth = "256"'
 
 # SQL_select_two_table.py
 wanted data1: '*'
@@ -23,27 +23,33 @@ table2: 'Taiwan_20210922_SDD'
 statement2: 'Readwrite_type = "read" AND Number_of_Job = "8" AND IOdepth = "8"'
 
 # SQL_chart.py
-Select_Data: 'MBPS' # IOPS / MBPS 
-Table_Names: 'VersaPLX2000_20211220_sdb_sdc'
+Select_Data: 'IOPS' # IOPS / MBPS 
+Table_Names: 'hp_20211224_RAM'
 ReadWrite_Type: '"randwrite"' # read, write, randread, randwrite
 Number_of_Job: '"64"'
 IOdepth: '"256"'
 
+# chart_readwrite.py
+Select_Data_rw: 'IOPS' # IOPS / MBPS 
+Table_Names_rw: 'hp_20211224_RAM'
+Number_of_Job_rw: '"64"'
+IOdepth_rw: '"256"'
+
 # SQL_histogram.py
 Select_Data_hist: 'IOPS' # IOPS / MBPS 
-Table_hist: [VersaPLX2000_20211220_RAM_sdb_sdc]
-Readwrite_hist: '"write"' # read, write, randread, ranwrite
+Table_hist: [hp_20211224_RAM]
+Readwrite_hist: '"randwrite"' # read, write, randread, ranwrite
 Number_of_Job_hist: '"64"' 
 IOdepth_hist: '"256"'
 Blocksize_hist: '"4k"' # 4k / 1M
 
 # SQL_deviation.py
 Standard_Value: IOPS # IOPS / MBPS
-Table_Name_devi_1: 'VersaPLX2000_20211220_RAM_sdb_sdc'
-ReadWrite_Type_Stan: '"randwrite"' # # read, write, randread, ranwrite
+Table_Name_devi_1: 'hp_20211224_RAM'
+ReadWrite_Type_Stan: '"randread"' # # read, write, randread, ranwrite
 
 Example_Value: IOPS # IOPS / MBPS
-Table_Name_devi_2: 'VersaPLX2000_20211220_sdb_sdc'
+Table_Name_devi_2: 'hp_20211224_RAM'
 ReadWrite_Type_Ex: '"randwrite"' # # read, write, randread, ranwrite
 
 # SQL_deviation_1standard.py

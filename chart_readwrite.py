@@ -35,7 +35,7 @@ def sql_graph_output():
 
     drbd = input ("Please enter the drbd type:")
 
-    sql_sentence = 'SELECT'+ ' ' +'Readwrite_type, blocksize, '+ a['Select_Data']+' '+'FROM'+' '+a['Table_Names'] +' '+'WHERE'+' '+ 'DRBD_type =' + '"'+ drbd + '"' + ' ' + 'AND' + ' ' + 'Number_of_Job =' + a['Number_of_Job'] + 'AND' + ' '+ 'IOdepth =' + a['IOdepth']
+    sql_sentence = 'SELECT'+ ' ' +'Readwrite_type, blocksize, '+ a['Select_Data_rw']+' '+'FROM'+' '+a['Table_Names_rw'] +' '+'WHERE'+' '+ 'DRBD_type =' + '"'+ drbd + '"' + ' ' + 'AND' + ' ' + 'Number_of_Job =' + a['Number_of_Job_rw'] + 'AND' + ' '+ 'IOdepth =' + a['IOdepth_rw']
     sql_result = cur.execute(sql_sentence)
     
     values = []
@@ -75,12 +75,12 @@ def sql_graph_output():
         y = values2[j]
         plt.plot(x,y, label = readwrite_type[j])
     
-    plt.title(a['Table_Names'] + '-' + a['Select_Data'] + '-' + drbd)
+    plt.title(a['Table_Names_rw'] + '-' + a['Select_Data_rw'] + '-' + drbd)
     # plt.title(f"{Table_Names}-{ReadWrite_Type}-{Select_Data}")
     plt.legend()
     plt.grid()
 
-    file_name = a['Table_Names'] + '-' + drbd + '-' + a['Select_Data'] + ' ' + 'chart'
+    file_name = a['Table_Names_rw'] + '-' + drbd + '-' + a['Select_Data_rw'] + ' ' + 'chart'
     # plt.savefig(file_name)
     plt.show()
     
