@@ -95,19 +95,30 @@ def sql_index_input():
                         Text_Table_Name text
                         )''')
     except:
-        print('Table already exist!')
+        # print('Table already exist!')
+        pass
 
     query = '''INSERT INTO Index_Table (Key_ID, Client_Name, Date, Disk_Type, Text_Table_Name) values (?, ?, ?, ?, ?)'''
 
-    # Key_ID = input ('Please enter a Key ID:')
-    # Client_Name = input ('Please enter the Client Name:')
-    # Date = input('Please enter the date:(format example:20210101):')
-    # Disk_Type = input ('Please enter the Disk Type:')
+    check_query = 'SELECT KeY_ID, Text_Table_Name from Index_Table'
+    check_list = cur.execute (check_query)
+
+    check_ID = []
+    check_table_name = []
+    for row in check_list:
+        # print (row)
+        check_ID.append(row[0])
+        check_table_name.append(row[1])
+    # print (key)
     
     try:
         key_ID = int(a['Key ID'])
     except ValueError:
         print ("Please enter a NUMBER for Key ID")
+        sys.exit()
+
+    if key_ID in check_ID:
+        print ("The key ID is repeated. Please enter another key ID")
         sys.exit()
     
     client_name = a['Client Name']
@@ -115,25 +126,18 @@ def sql_index_input():
     disk_type = a['Disk Type']
     text_table_name = (client_name + '_' + date + '_' + disk_type)
 
+    if text_table_name in check_table_name:
+        print ("The table already exist!")
+        sys.exit()
+
     global TABLE_NAME 
     TABLE_NAME = text_table_name
     global KEY_ID
     KEY_ID = key_ID
 
     values = (key_ID, client_name, date, disk_type, text_table_name)
-
-    try: 
-        cur.execute (query,values)
-    except sqlite3.IntegrityError:
-        print ("The key ID is repeated. Please check the Index Table and re-enter.")
-        sys.exit()
     
-    # sql_result = cur.execute('SELECT * FROM Index_Table')
-
-    # columnlist = []
-    # for column in sql_result.description:
-    #     columnlist.append(column[0])
-    # print (columnlist)
+    cur.execute (query,values)
   
     sql_sentence = 'SELECT * FROM Index_Table'
     cur.execute(sql_sentence)
@@ -177,7 +181,7 @@ def sql_text_input():
             IOPS = data[5]
             MBPS = data[6]
 
-            values = (Key_ID, DRBD_type, Readwrite_type, blocksize, IOdepth, Number_of_Job, IOPS, MBPS)
+            values = (Key_ID, DRBD_type, Readwrite_type, blocksize, IOdepth, Number_of_Job,IOPS, MBPS)
 
             cur.execute(query, values)
 
