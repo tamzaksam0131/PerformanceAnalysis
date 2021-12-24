@@ -14,7 +14,7 @@ def sql_print_drbd():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Names']
+    sql_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Names_rw']
     data = cur.execute(sql_sentence)
 
     for row in set(data):
