@@ -1,42 +1,17 @@
 import sqlite3
 import csv
-import matplotlib
 from prettytable.prettytable import from_db_cursor
-matplotlib.use ('TKAgg')
-import matplotlib.pyplot as plt
 import yaml
 
 def sql_analysis_output():
 
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
-
-    # Select_Data_1 = input ('Please Enter the selected data you want for table 1:')
-    # Table_Names_1 = input ('Please Enter the Table Name for table 1:')
-    # Condition_1 = input ('Please Enter the Condition for SQL Sentence for table 1:')
-
-
-    # Select_Data_2 = input ('Please Enter the selected data you want for table 2:')
-    # Table_Names_2 = input ('Please Enter the Table Name for table 2:')
-    # Condition_2 = input ('Please Enter the Condition for SQL Sentence for table 2:')
-    
-    # SQL_Sentence = rf'SELECT {Select_Data_1} FROM {Table_Names_1} WHERE {Condition_1} UNION ALL SELECT {Select_Data_2} FROM {Table_Names_2} WHERE {Condition_2}'
-    # sql_result = cur.execute(SQL_Sentence)
-    
-    # sql_result = cur.execute('SELECT * FROM Guangzhou_20210924_RAM WHERE blocksize = "2k" UNION ALL SELECT * FROM Taiwan_20210922_SDD WHERE blocksize = "2k"')
     
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
     sql_sentence = 'SELECT'+' '+a['wanted data1']+' '+'FROM'+' '+a['table1'] +' '+'where'+' '+a['statement1'] +' '+ 'UNION ALL' + ' ' + 'SELECT'+' '+a['wanted data2']+' '+'from'+' '+a['table2'] +' '+'where'+' '+a['statement2']
-    # sql_result = cur.execute(sql_sentence)
-    
-    # columnlist = []
-    # for column in sql_result.description:
-    #     columnlist.append(column[0])
-    # print (columnlist)
-    
-    # for row in sql_result:
-    #     print (row)
+   
     cur.execute((sql_sentence))
     
     x = from_db_cursor(cur)

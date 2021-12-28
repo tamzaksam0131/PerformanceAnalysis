@@ -2,7 +2,6 @@
 import index as index
 import sql_input as sqlin
 import sql_select as sqlsel
-import sql_select_two_table as sqlsel2
 import sql_chart as sqlchart
 import sql_histogram as sqlhis
 import sql_deviation as sqldevi
@@ -39,7 +38,7 @@ def main():
         if number_of_table  == "many":
             sqlsel.sql_analysis_output()
         if number_of_table  == "2":
-            sqlsel2.sql_analysis_output()
+            sqlsel.sql_analysis_output_2()
     
     elif typein == "graph":
         index.sql_print_index()
