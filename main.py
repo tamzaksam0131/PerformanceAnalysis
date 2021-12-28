@@ -8,6 +8,7 @@ import sql_deviation as sqldevi
 import sql_deviation_1standard as sqldevi1
 import sql_view as sqlview
 import sql_manage as sqlman
+import chart_readwrite as chartrw
 import yaml
 import sqlite3
 
@@ -33,7 +34,7 @@ def main():
     
     elif typein == "analysis":
         index.sql_print_index()
-        number_of_table = input("How many tables do you want to analyze with? (many or 2):")
+        number_of_table = input("How many tables do you want to analyze with? (Enter: many / 2):")
         # number_of_table = a['number of table']
         if number_of_table  == "many":
             sqlsel.sql_analysis_output()
@@ -42,16 +43,21 @@ def main():
     
     elif typein == "graph":
         index.sql_print_index()
-        graph = input("What kind of graph do you want to create? (chart or histogram):")
+        graph = input("What kind of graph do you want to create? (Enter: chart / histogram):")
         if graph == "chart":
-            sqlchart.sql_graph_output()
+            kind = input("Do you want to create chart with drbd type or readwrite type?(Enter: dt / rw):")
+            if kind == "dt":
+                sqlchart.sql_graph_output()
+            if kind == "rw":
+                chartrw.sql_print_drbd()
+                chartrw.sql_graph_output()
         if graph == "histogram":
             sqlhis.sql_graph_output()
 
     
     elif typein == "deviation":
         index.sql_print_index()
-        deviation = input("What kind of deviation do you want to create? (multiple standards or 1 standard)")
+        deviation = input("What kind of deviation do you want to create? (Enter: multiple standards / 1 standard)")
         if deviation == "multiple standards":
             sqldevi.sql_print_standard_drbd()
             sqldevi.sql_pick_standard_values()
