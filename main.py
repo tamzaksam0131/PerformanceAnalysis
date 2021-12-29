@@ -56,7 +56,6 @@ def main():
 
     
     elif typein == "deviation":
-        index.sql_print_index()
         deviation = input("What kind of deviation do you want to create? (Enter: multiple standards / 1 standard)")
         if deviation == "multiple standards":
             sqldevi.sql_print_standard_drbd()
