@@ -68,6 +68,12 @@ def sql_graph_output():
     plt.xlabel ('DRBD Type')
     plt.ylabel (a['Select_Data_hist'])
     plt.xticks (rotation = 30)
+    
+    print (x_data)
+    print (y_data)
+    for x,y in zip(drbd,values):
+        plt.text(x, y+0.05, '%.2f' % y, ha = 'center', va = 'bottom', fontsize = 11)
+
     plt.title(a['Select_Data_hist'] + ' ' + 'under Different DRBD Type (Blockszie =' + a['Blocksize_hist'] + ')')
     plt.legend()
     plt.grid()
