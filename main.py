@@ -5,7 +5,6 @@ import sql_select as sqlsel
 import sql_chart as sqlchart
 import sql_histogram as sqlhis
 import sql_deviation as sqldevi
-import sql_deviation_1standard as sqldevi1
 import sql_view as sqlview
 import sql_manage as sqlman
 import chart_readwrite as chartrw
