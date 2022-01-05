@@ -47,24 +47,11 @@ def sql_pick_standard_values():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    # value_1 = input('Please Enter the Standard value you want(IOPS / MBPS):')
-    # Table_Names_1 = input ('Please Enter the Text Table Name(Standard):')
-    # Readwrite_Type_1 = input ('Please Enter the readwrite type(Standard):')
     drbd_type_1 = input ('Please Enter the drbd type(Standard):')
-    # print (DRBD_Type_1)
-    # print (type(DRBD_Type_1))
-
-    # global value
-    # value = value_1
-    # global Standard_table_name
-    # Standard_table_name = Table_Names_1
-    # global Standard_readwrite_Type
-    # Standard_readwrite_Type = Readwrite_Type_1
+ 
     global STANDARD_DRBD
     STANDARD_DRBD = drbd_type_1
 
-    # sql_result_1 = cur.execute(rf'SELECT {value_1} From {Table_Names_1} WHERE Readwrite_type = "{Readwrite_Type_1}" AND DRBD_Type = "{DRBD_Type_1}"')
-    # sql_result_1 = cur.execute('SELECT IOPS From Guangzhou_20210924_RAM WHERE Readwrite_type = "randwrite" AND DRBD_Type = "drbd1001"')
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
@@ -80,6 +67,33 @@ def sql_pick_standard_values():
     for row in sql_result_1:
         # print (row)
         STANDARD_VAULES.append(row[0])
+
+    cur.close()
+    con.commit()
+    con.close()
+
+def sql_pick_standard_values_1():
+
+    con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
+    cur = con.cursor() # create a cursor for connection object
+
+
+    drbd_type_1 = input ('Please Enter the drbd type(Standard):')
+ 
+    global STANDARD_DRBD
+    STANDARD_DRBD = drbd_type_1
+
+    a_yaml_file = open('sql_config.yml')
+    a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
+    SQL_Sentence = 'SELECT' + ' ' + a['Standard_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_Stan'] \
+                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_1Stan'] \
+                + ' ' + 'AND DRBD_Type = ' + ' ' + '"' + drbd_type_1 + '"' \
+                + ' ' + 'AND blocksize = ' + ' ' + a['Blocksize_Stan']    
+    sql_result_1 = cur.execute(SQL_Sentence)
+    for row in sql_result_1:
+        # print (row)
+        STANDARD_VAULES.append(row[0])
+    print (STANDARD_VAULES)
 
     cur.close()
     con.commit()
@@ -184,6 +198,7 @@ def draw():
 if __name__ == '__main__':
     sql_print_standard_drbd()
     sql_pick_standard_values()
+    sql_pick_standard_values_1()
     sql_print_example_drbd()
     sql_pick_example_values()
     draw()

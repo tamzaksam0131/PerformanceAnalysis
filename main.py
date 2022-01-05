@@ -64,11 +64,11 @@ def main():
             sqldevi.sql_pick_example_values()
             sqldevi.draw()
         if deviation == "1 standard":
-            sqldevi1.sql_print_standard_drbd()
-            sqldevi1.sql_pick_standard_values()
-            sqldevi1.sql_print_example_drbd()
-            sqldevi1.sql_pick_example_values()
-            sqldevi1.draw()
+            sqldevi.sql_print_standard_drbd()
+            sqldevi.sql_pick_standard_values_1()
+            sqldevi.sql_print_example_drbd()
+            sqldevi.sql_pick_example_values()
+            sqldevi.draw()
 
     elif typein == "view":
         index.sql_print_index()
