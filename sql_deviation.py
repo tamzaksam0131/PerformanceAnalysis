@@ -85,8 +85,8 @@ def sql_pick_standard_values_1():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    SQL_Sentence = 'SELECT' + ' ' + a['Standard_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_Stan'] \
-                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_1Stan'] \
+    SQL_Sentence = 'SELECT' + ' ' + a['Standard_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_1'] \
+                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_Stan'] \
                 + ' ' + 'AND DRBD_Type = ' + ' ' + '"' + drbd_type_1 + '"' \
                 + ' ' + 'AND blocksize = ' + ' ' + a['Blocksize_Stan']    
     sql_result_1 = cur.execute(SQL_Sentence)
