@@ -7,7 +7,6 @@ import sql_histogram as sqlhis
 import sql_deviation as sqldevi
 import sql_view as sqlview
 import sql_manage as sqlman
-import chart_readwrite as chartrw
 import yaml
 import sqlite3
 
@@ -48,8 +47,8 @@ def main():
             if kind == "dt":
                 sqlchart.sql_graph_output()
             if kind == "rw":
-                chartrw.sql_print_drbd()
-                chartrw.sql_graph_output()
+                sqlchart.sql_print_drbd()
+                sqlchart.sql_graph_output_rw()
         if graph == "histogram":
             sqlhis.sql_graph_output()
 
