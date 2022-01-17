@@ -28,7 +28,7 @@ def sql_print_standard_drbd():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_Stan']
+    SQL_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_1']
     data = cur.execute(SQL_sentence)
 
     # for column in data.description:
@@ -55,8 +55,8 @@ def sql_pick_standard_values():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    SQL_Sentence = 'SELECT' + ' ' + a['Standard_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_Stan'] \
-                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_1Stan'] \
+    SQL_Sentence = 'SELECT' + ' ' + a['Standard_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_1'] \
+                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_Stan'] \
                 + ' ' + 'AND DRBD_Type = ' + ' ' + '"' + drbd_type_1 + '"' \
                 + ' ' + 'AND blocksize = ' + ' ' + a['Blocksize_Stan']    
     sql_result_1 = cur.execute(SQL_Sentence)
@@ -77,7 +77,7 @@ def sql_print_example_drbd():
     con = sqlite3.connect ('sqldatabase_test.db') # create connection object and database file
     cur = con.cursor() # create a cursor for connection object
 
-    sql_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_Ex']
+    sql_sentence = 'SELECT DRBD_Type From' + ' ' + a['Table_Name_devi_2']
     data = cur.execute(sql_sentence)
 
     # for column in data.description:
@@ -112,8 +112,8 @@ def sql_pick_example_values():
 
     a_yaml_file = open('sql_config.yml')
     a = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
-    sql_sentence = 'SELECT' + ' ' + a['Example_Value_2'] + ' ' + 'From' + ' ' + a['Table_Name_devi_Ex'] \
-                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_1Ex'] \
+    sql_sentence = 'SELECT' + ' ' + a['Example_Value'] + ' ' + 'From' + ' ' + a['Table_Name_devi_2'] \
+                + ' ' + 'WHERE Readwrite_type = ' + ' ' + a['ReadWrite_Type_Ex'] \
                 + ' ' + 'AND DRBD_Type = ' + ' ' + '"' + drbd_type_2 + '"'
     
     sql_result_2 = cur.execute(sql_sentence)
@@ -158,7 +158,7 @@ def draw():
     for a,b in zip(blocksize_range,RATIO_PER):
         plt.text(a, b+0.05, '%.2f' % b, ha = 'center', va = 'bottom', fontsize = 11)
     
-    plt.title(ayaml['Standard_Value_1'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_Stan'] + '(' + STANDARD_DRBD +','+ayaml['ReadWrite_Type_1Stan']+ ayaml['Blocksize_Stan'] + ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_Ex'] + '(' + EXAMPLE_DRBD +','+ayaml['ReadWrite_Type_1Ex'] + ')')
+    plt.title(ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + STANDARD_DRBD +','+ayaml['ReadWrite_Type_Stan']+ ayaml['Blocksize_Stan'] + ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + EXAMPLE_DRBD +','+ayaml['ReadWrite_Type_Ex'] + ')')
     plt.grid()
     
     # file_name = ayaml['Standard_Value_1'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_Stan'] + '(' + ayaml['DRBD_Type_1Stan']+','+ayaml['ReadWrite_Type_1Stan']+ ayaml['Blocksize_Stan'] + ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_Ex'] + '(' + ayaml['DRBD_Type_1Ex']+','+ayaml['ReadWrite_Type_1Ex'] + ')'

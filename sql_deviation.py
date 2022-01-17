@@ -3,12 +3,15 @@ import sqlite3
 from sqlite3.dbapi2 import ProgrammingError
 import numpy as np
 import matplotlib as mpl
+
+from sql_deviation_1standard import EXAMPLE_VALUES
 mpl.use ('TKAgg')
 import matplotlib.pyplot as plt
 import yaml
 
-STANDARD_VAULES= []
-EXAMPLE_VAULES = []
+STANDARD_VALUES= []
+EXAMPLE_VALUES = []
+LONG_STANDARD_VALUES = []
 RATIO_PER = []
 
 # value = ""
@@ -66,7 +69,7 @@ def sql_pick_standard_values():
     
     for row in sql_result_1:
         # print (row)
-        STANDARD_VAULES.append(row[0])
+        STANDARD_VALUES.append(row[0])
 
     cur.close()
     con.commit()
@@ -92,8 +95,8 @@ def sql_pick_standard_values_1():
     sql_result_1 = cur.execute(SQL_Sentence)
     for row in sql_result_1:
         # print (row)
-        STANDARD_VAULES.append(row[0])
-    print (STANDARD_VAULES)
+        STANDARD_VALUES.append(row[0])
+    print (STANDARD_VALUES)
 
     cur.close()
     con.commit()
@@ -150,8 +153,8 @@ def sql_pick_example_values():
     
     for row in sql_result_2:
         # print (row)
-        EXAMPLE_VAULES.append(row[0])
-    print (EXAMPLE_VAULES)
+        EXAMPLE_VALUES.append(row[0])
+    print (EXAMPLE_VALUES)
 
     cur.close()
     con.commit()
@@ -161,9 +164,9 @@ def draw():
     a_yaml_file = open('sql_config.yml')
     ayaml = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
 
-    diffence = [EXAMPLE_VAULES - STANDARD_VAULES for EXAMPLE_VAULES, STANDARD_VAULES in zip (EXAMPLE_VAULES, STANDARD_VAULES)]
+    diffence = [EXAMPLE_VAULES - STANDARD_VAULES for EXAMPLE_VAULES, STANDARD_VAULES in zip (EXAMPLE_VALUES, STANDARD_VALUES)]
     print (diffence)
-    ratio = [diffence / STANDARD_VAULES for diffence, STANDARD_VAULES in zip (diffence, STANDARD_VAULES)]
+    ratio = [diffence / STANDARD_VAULES for diffence, STANDARD_VAULES in zip (diffence, STANDARD_VALUES)]
 
     RATIO_PER = [round(i*100,2) for i in ratio]
     # print (ratio)
@@ -195,6 +198,48 @@ def draw():
     # plt.savefig(file_name)
     plt.show()
 
+def draw_1standard():
+    a_yaml_file = open('sql_config.yml')
+    ayaml = yaml.load(a_yaml_file, Loader = yaml.FullLoader)
+
+    LONG_STANDARD_VALUES = STANDARD_VALUES * 12
+    # print (LONG_STANDARD_VALUES)
+    
+    # print(EXAMPLE_VALUES)
+    diffence = [EXAMPLE_VALUES - LONG_STANDARD_VALUES for EXAMPLE_VALUES, LONG_STANDARD_VALUES in zip (EXAMPLE_VALUES, LONG_STANDARD_VALUES)]
+    print (diffence)
+    ratio = [diffence / LONG_STANDARD_VALUES for diffence, LONG_STANDARD_VALUES in zip (diffence, LONG_STANDARD_VALUES)]
+
+    RATIO_PER = [round(i*100,2) for i in ratio]
+    # print (ratio)
+    print (RATIO_PER)
+
+    blocksize_range = ['1k', '2k','4k','8k','16k','32k','64k','128k','256k','512k','1M','2M']
+    
+    plt.figure(figsize=(50,50), dpi = 100)
+    bar_width = 0.3
+    
+    for i in range(len(blocksize_range)):
+        # print (i)
+        x_data = blocksize_range[i]
+        # print (x_data)
+        y_data = RATIO_PER[i]
+        # print (y_data)
+        plt.bar(x_data, y_data, width = bar_width)
+
+    plt.xlabel ('Blocksize')
+    plt.ylabel ('Rate of difference (Percentage)')
+    plt.xticks (rotation = 30)
+    for a,b in zip(blocksize_range,RATIO_PER):
+        plt.text(a, b+0.05, '%.2f' % b, ha = 'center', va = 'bottom', fontsize = 11)
+    
+    plt.title(ayaml['Standard_Value'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_1'] + '(' + STANDARD_DRBD +','+ayaml['ReadWrite_Type_Stan']+ ayaml['Blocksize_Stan'] + ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_2'] + '(' + EXAMPLE_DRBD +','+ayaml['ReadWrite_Type_Ex'] + ')')
+    plt.grid()
+    
+    # file_name = ayaml['Standard_Value_1'] + ' ' + 'difference(%)' + ' ' + ayaml['Table_Name_devi_Stan'] + '(' + ayaml['DRBD_Type_1Stan']+','+ayaml['ReadWrite_Type_1Stan']+ ayaml['Blocksize_Stan'] + ')'+ ' ' + 'vs.' + ayaml['Table_Name_devi_Ex'] + '(' + ayaml['DRBD_Type_1Ex']+','+ayaml['ReadWrite_Type_1Ex'] + ')'
+    # plt.savefig(file_name)
+    plt.show()
+
 if __name__ == '__main__':
     sql_print_standard_drbd()
     sql_pick_standard_values()
@@ -202,3 +247,4 @@ if __name__ == '__main__':
     sql_print_example_drbd()
     sql_pick_example_values()
     draw()
+    draw_1standard()

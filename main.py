@@ -66,7 +66,7 @@ def main():
             sqldevi.sql_pick_standard_values_1()
             sqldevi.sql_print_example_drbd()
             sqldevi.sql_pick_example_values()
-            sqldevi.draw()
+            sqldevi.draw_1standard()
 
     elif typein == "view":
         index.sql_print_index()
